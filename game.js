@@ -28,6 +28,11 @@ function parseNumber(str) {
   return parseInt(String(str).replace(/,/g, '').replace(/\D/g, ''), 10) || 0;
 }
 
+function getAvatarColor(index) {
+  const colors = ['#38bdf8', '#4ade80', '#f87171', '#fbbf24'];
+  return colors[index % colors.length];
+}
+
 function getInitials(name) {
   return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
 }
