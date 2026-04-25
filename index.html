@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Population Guessing Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Screen 1: Setup -->
+    <section id="screen-setup" class="screen active">
+      <h1>Population Guessing Game</h1>
+      <div class="card">
+        <label for="num-players">Number of Players</label>
+        <div class="segmented" id="num-players-selector">
+          <button data-value="2" class="active">2</button>
+          <button data-value="3">3</button>
+          <button data-value="4">4</button>
+        </div>
+        <label for="target-score">Points to Win</label>
+        <div class="segmented" id="target-score-selector">
+          <button data-value="3">3</button>
+          <button data-value="5" class="active">5</button>
+          <button data-value="10">10</button>
+          <button data-value="15">15</button>
+        </div>
+        <button class="btn-primary" id="btn-setup-next">Next</button>
+      </div>
+    </section>
+
+    <!-- Screen 2: Names -->
+    <section id="screen-names" class="screen">
+      <h1>Player Names</h1>
+      <div class="card" id="names-container"></div>
+      <button class="btn-primary" id="btn-names-next">Next</button>
+    </section>
+
+    <!-- Screen 3: Ready / Leaderboard -->
+    <section id="screen-ready" class="screen">
+      <h1>Ready?</h1>
+      <div class="card">
+        <div id="leaderboard-ready"></div>
+        <button class="btn-primary btn-large" id="btn-start-game">START</button>
+      </div>
+    </section>
+
+    <!-- Screen 4: Pass the Phone -->
+    <section id="screen-pass" class="screen">
+      <div class="pass-card">
+        <div class="pass-icon">📱</div>
+        <h2>Pass the Phone</h2>
+        <p id="pass-player-name">Ready Player 1?</p>
+        <button class="btn-primary btn-large" id="btn-pass-ready">I'm Ready</button>
+      </div>
+    </section>
+
+    <!-- Screen 5: Guess -->
+    <section id="screen-guess" class="screen">
+      <div class="guess-header">
+        <span class="round-badge">Round <span id="guess-round">1</span></span>
+        <span class="player-badge" id="guess-player-badge">Player 1</span>
+      </div>
+      <div class="card guess-card">
+        <h2 id="guess-country">Country</h2>
+        <p class="guess-prompt">Guess the population</p>
+        <div class="input-wrapper">
+          <input type="text" id="guess-input" placeholder="0" autocomplete="off" inputmode="numeric">
+        </div>
+        <button class="btn-primary" id="btn-submit-guess">Submit Guess</button>
+      </div>
+    </section>
+
+    <!-- Screen 6: Results -->
+    <section id="screen-results" class="screen">
+      <h1>Round Results</h1>
+      <div class="card results-card">
+        <div class="country-reveal">
+          <h2 id="results-country">Country</h2>
+          <div class="actual-pop" id="results-actual">0</div>
+          <p class="label">Actual Population</p>
+        </div>
+        <div class="results-list" id="results-list"></div>
+        <div class="point-award" id="point-award"></div>
+      </div>
+      <div class="card">
+        <h3>Leaderboard</h3>
+        <div class="leaderboard" id="leaderboard-results"></div>
+      </div>
+      <button class="btn-primary btn-large" id="btn-next-round">Next Round</button>
+    </section>
+
+    <!-- Screen 7: Winner -->
+    <section id="screen-winner" class="screen">
+      <div class="winner-card">
+        <div class="trophy">🏆</div>
+        <h1 id="winner-name">Player 1 Wins!</h1>
+        <p id="winner-score">Final Score: 5</p>
+        <div class="final-leaderboard" id="final-leaderboard"></div>
+        <button class="btn-primary btn-large" id="btn-play-again">Play Again</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
