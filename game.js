@@ -73,6 +73,11 @@ function buildNameInputs() {
     div.innerHTML = `
       <label>Player ${i + 1} Name</label>
       <input type="text" id="name-${i}" placeholder="Player ${i + 1}" value="Player ${i + 1}">
+      <label class="toggle-label">
+        <input type="checkbox" id="hint-${i}" class="toggle-input">
+        <span class="toggle-slider"></span>
+        <span class="toggle-text">Hints</span>
+      </label>
     `;
     container.appendChild(div);
   }
@@ -96,11 +101,30 @@ function showPassScreen() {
   showScreen('screen-pass');
 }
 
+function getHintInterval(pop) {
+  if (pop < 200000) return { min: 0, max: 200000, label: '0 – 200,000' };
+  if (pop < 1000000) return { min: 200000, max: 1000000, label: '200,000 – 1,000,000' };
+  if (pop < 10000000) return { min: 1000000, max: 10000000, label: '1,000,000 – 10,000,000' };
+  if (pop < 50000000) return { min: 10000000, max: 50000000, label: '10,000,000 – 50,000,000' };
+  if (pop < 100000000) return { min: 50000000, max: 100000000, label: '50,000,000 – 100,000,000' };
+  if (pop < 200000000) return { min: 100000000, max: 200000000, label: '100,000,000 – 200,000,000' };
+  if (pop < 500000000) return { min: 200000000, max: 500000000, label: '200,000,000 – 500,000,000' };
+  return { min: 500000000, max: Infinity, label: '500,000,000+' };
+}
+
 function showGuessScreen() {
   const p = gameState.players[gameState.currentPlayerTurn];
   $('guess-round').textContent = gameState.currentRound;
   $('guess-player-badge').textContent = p.name;
   $('guess-country').textContent = gameState.currentCountry.country;
+  const hintEl = $('guess-hint');
+  if (p.hints && gameState.currentCountry) {
+    const interval = getHintInterval(gameState.currentCountry.population);
+    hintEl.textContent = `Hint: between ${interval.label}`;
+    hintEl.style.display = 'block';
+  } else {
+    hintEl.style.display = 'none';
+  }
   $('guess-input').value = '';
   showScreen('screen-guess');
   $('guess-input').focus();
@@ -181,13 +205,16 @@ function initGame() {
   gameState.players = [];
   for (let i = 0; i < gameState.numPlayers; i++) {
     const nameInput = $(`name-${i}`);
+    const hintInput = $(`hint-${i}`);
     const name = nameInput ? nameInput.value.trim() || `Player ${i + 1}` : `Player ${i + 1}`;
+    const hintEnabled = hintInput ? hintInput.checked : false;
     gameState.players.push({
       name,
       score: 0,
       currentGuess: 0,
       lastGuess: 0,
-      lastDiff: 0
+      lastDiff: 0,
+      hints: hintEnabled
     });
   }
   gameState.currentRound = 1;
