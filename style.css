@@ -338,6 +338,14 @@ input[type="text"]:focus {
   color: var(--success);
 }
 
+.result-points {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--success);
+  text-align: center;
+  min-width: 40px;
+}
+
 .point-award {
   text-align: center;
   padding: 12px;

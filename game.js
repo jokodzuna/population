@@ -162,6 +162,37 @@ function showPassScreen() {
   saveState('screen-pass');
 }
 
+function getRoundPoints() {
+  const numPlayers = gameState.numPlayers;
+  const pointTable = {
+    2: [1, 0],
+    3: [3, 1, 0],
+    4: [5, 3, 1, 0]
+  };
+  const points = pointTable[numPlayers] || [1, 0];
+
+  const sorted = [...gameState.players].map((p, i) => ({ idx: i, diff: p.lastDiff }))
+    .sort((a, b) => a.diff - b.diff);
+
+  const result = new Array(numPlayers).fill(0);
+  let i = 0;
+  while (i < numPlayers) {
+    let j = i + 1;
+    while (j < numPlayers && sorted[j].diff === sorted[i].diff) j++;
+    const groupSize = j - i;
+    let sumPoints = 0;
+    for (let k = i; k < j && k < points.length; k++) {
+      sumPoints += points[k];
+    }
+    const ptsPerPlayer = Math.floor(sumPoints / groupSize);
+    for (let k = i; k < j; k++) {
+      result[sorted[k].idx] = ptsPerPlayer;
+    }
+    i = j;
+  }
+  return result;
+}
+
 function getHintInterval(pop) {
   if (pop < 200000) return { min: 0, max: 200000, label: '0 – 200,000' };
   if (pop < 1000000) return { min: 200000, max: 1000000, label: '200,000 – 1,000,000' };
@@ -194,6 +225,8 @@ function showGuessScreen() {
 
 function renderResultsScreen() {
   const actual = gameState.currentCountry.population;
+  const roundPoints = getRoundPoints();
+
   let winnerIdx = -1;
   let bestDiff = Infinity;
   gameState.players.forEach((p, i) => {
@@ -206,9 +239,10 @@ function renderResultsScreen() {
   $('results-country').textContent = gameState.currentCountry.country;
   $('results-actual').textContent = formatNumber(actual);
 
-  const sortedByDiff = [...gameState.players].map((p, i) => ({ p, i })).sort((a, b) => a.p.lastDiff - b.p.lastDiff);
+  const sortedByDiff = [...gameState.players].map((p, i) => ({ p, i, pts: roundPoints[i] }))
+    .sort((a, b) => a.p.lastDiff - b.p.lastDiff);
   const list = $('results-list');
-  list.innerHTML = sortedByDiff.map(({ p, i }) => {
+  list.innerHTML = sortedByDiff.map(({ p, i, pts }) => {
     const isWinner = i === winnerIdx;
     const pct = actual > 0 ? (p.lastDiff / actual * 100).toFixed(1) : '0';
     const diffClass = pct < 10 ? 'very-close' : pct < 50 ? 'close' : '';
@@ -222,14 +256,16 @@ function renderResultsScreen() {
         <div class="result-diff ${diffClass}">
           ${formatNumber(p.lastDiff)} off<br><small>${pct}%</small>
         </div>
+        <div class="result-points">+${pts}</div>
       </div>
     `;
   }).join('');
 
-  const winner = winnerIdx >= 0 ? gameState.players[winnerIdx] : null;
-  $('point-award').textContent = winner
-    ? `${winner.name} gets the point! Closest guess wins.`
-    : 'No winner this round.';
+  const pointMessages = sortedByDiff.filter(({ pts }) => pts > 0)
+    .map(({ p, pts }) => `${p.name} +${pts}`).join(', ');
+  $('point-award').textContent = pointMessages
+    ? `Points awarded: ${pointMessages}`
+    : 'No points this round.';
 
   renderLeaderboard('leaderboard-results');
   showScreen('screen-results');
@@ -237,22 +273,17 @@ function renderResultsScreen() {
 
 function finishRound() {
   const actual = gameState.currentCountry.population;
-  let bestDiff = Infinity;
-  let winnerIdx = -1;
 
   gameState.players.forEach((p, i) => {
     const diff = Math.abs(p.currentGuess - actual);
     p.lastDiff = diff;
     p.lastGuess = p.currentGuess;
-    if (diff < bestDiff) {
-      bestDiff = diff;
-      winnerIdx = i;
-    }
   });
 
-  if (winnerIdx >= 0) {
-    gameState.players[winnerIdx].score += 1;
-  }
+  const roundPoints = getRoundPoints();
+  gameState.players.forEach((p, i) => {
+    p.score += roundPoints[i];
+  });
 
   renderResultsScreen();
   saveState('screen-results');
