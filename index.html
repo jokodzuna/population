@@ -22,18 +22,21 @@
       <div class="card">
         <label for="num-players">Number of Players</label>
         <div class="segmented" id="num-players-selector">
+          <button data-value="1">Solo</button>
           <button data-value="2" class="active">2</button>
           <button data-value="3">3</button>
           <button data-value="4">4</button>
         </div>
-        <label for="target-score">Points to Win</label>
-        <div class="segmented" id="target-score-selector">
-          <button data-value="3">3</button>
-          <button data-value="5" class="active">5</button>
-          <button data-value="10">10</button>
-          <button data-value="20">20</button>
-          <button data-value="50">50</button>
-          <button data-value="100">100</button>
+        <div id="target-score-group">
+          <label for="target-score">Points to Win</label>
+          <div class="segmented" id="target-score-selector">
+            <button data-value="3">3</button>
+            <button data-value="5" class="active">5</button>
+            <button data-value="10">10</button>
+            <button data-value="20">20</button>
+            <button data-value="50">50</button>
+            <button data-value="100">100</button>
+          </div>
         </div>
         <button class="btn-primary" id="btn-setup-next">Next</button>
       </div>
@@ -88,7 +91,7 @@
 
     <!-- Screen 6: Results -->
     <section id="screen-results" class="screen">
-      <h1>Round Results</h1>
+      <h1 id="results-title">Round Results</h1>
       <div class="card results-card">
         <div class="country-reveal">
           <h2 id="results-country">Country</h2>
@@ -96,10 +99,18 @@
           <p class="label">Actual Population</p>
           <div class="fun-fact" id="results-fact"></div>
         </div>
-        <div class="results-list" id="results-list"></div>
-        <div class="point-award" id="point-award"></div>
+        <div id="multi-result-section">
+          <div class="results-list" id="results-list"></div>
+          <div class="point-award" id="point-award"></div>
+        </div>
+        <div id="solo-result-section" style="display:none">
+          <div class="solo-points-label">Points This Round</div>
+          <div class="solo-points-counter" id="solo-points-counter">0</div>
+          <div class="solo-accuracy" id="solo-accuracy"></div>
+          <div class="solo-session-total" id="solo-session-total"></div>
+        </div>
       </div>
-      <div class="card">
+      <div id="leaderboard-results-card" class="card">
         <h3>Leaderboard</h3>
         <div class="leaderboard" id="leaderboard-results"></div>
       </div>
@@ -113,6 +124,10 @@
         <div class="trophy">🏆</div>
         <h1 id="winner-name">Player 1 Wins!</h1>
         <p id="winner-score">Final Score: 5</p>
+        <div id="solo-highscore-display" style="display:none">
+          <p id="solo-high-score-text" class="solo-high-score-text"></p>
+          <p id="solo-new-record" class="solo-new-record" style="display:none">🏅 New High Score!</p>
+        </div>
         <div class="final-leaderboard" id="final-leaderboard"></div>
         <button class="btn-primary btn-large" id="btn-play-again">Play Again</button>
       </div>

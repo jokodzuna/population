@@ -651,3 +651,80 @@ input[type="text"]:focus {
 .text-center {
   text-align: center;
 }
+
+/* ── Solo Mode ──────────────────────────────────────── */
+#solo-result-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0 8px;
+  gap: 6px;
+}
+
+.solo-points-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.solo-points-counter {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.solo-accuracy {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--success);
+}
+
+.solo-session-total {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Ready screen for solo */
+.solo-ready-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 0;
+}
+
+.solo-ready-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.solo-ready-best {
+  font-size: 1rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.solo-ready-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Winner screen high score */
+.solo-high-score-text {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin: 4px 0;
+}
+
+.solo-new-record {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--warning);
+  animation: fadeIn 0.5s ease;
+}

@@ -27,6 +27,9 @@ const CHEAT_DEPARTURE_KEY = 'cheatDepartureTime';
 const CHEAT_THRESHOLD = 5000;
 let heartbeatInterval = null;
 
+const SOLO_ROUNDS = 10;
+const SOLO_HIGH_SCORE_KEY = 'soloHighScore';
+
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   $(id).classList.add('active');
@@ -212,7 +215,7 @@ function buildNameInputs() {
     const div = document.createElement('div');
     div.className = 'name-input-group';
     div.innerHTML = `
-      <label>Player ${i + 1} Name</label>
+      <label>${isSoloMode() ? 'Your Name' : 'Player ' + (i + 1) + ' Name'}</label>
       <input type="text" id="name-${i}" placeholder="Player ${i + 1}" value="Player ${i + 1}">
       <label class="toggle-label">
         <input type="checkbox" id="hint-${i}" class="toggle-input">
@@ -222,6 +225,8 @@ function buildNameInputs() {
     `;
     container.appendChild(div);
   }
+  const tsg = $('target-score-group');
+  if (tsg) tsg.style.display = isSoloMode() ? 'none' : '';
 }
 
 function pickRandomCountry() {
@@ -285,6 +290,24 @@ function getHintInterval(pop) {
   return { min: 500000000, max: Infinity, label: '500,000,000+' };
 }
 
+function isSoloMode() { return gameState.numPlayers === 1; }
+
+function getSoloPoints(actual, guess) {
+  const error = Math.abs(actual - guess) / actual;
+  return Math.max(0, Math.round(1000 * (1 - (error / 2.0))));
+}
+
+function animateCounter(el, target, duration) {
+  duration = duration || 1200;
+  const start = performance.now();
+  const step = (now) => {
+    const t = Math.min((now - start) / duration, 1);
+    el.textContent = Math.round(t * target).toLocaleString('en-US');
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
 function showGuessScreen() {
   const p = gameState.players[gameState.currentPlayerTurn];
   $('guess-round').textContent = gameState.currentRound;
@@ -308,16 +331,6 @@ function showGuessScreen() {
 
 function renderResultsScreen() {
   const actual = gameState.currentCountry.population;
-  const roundPoints = getRoundPoints();
-
-  let winnerIdx = -1;
-  let bestDiff = Infinity;
-  gameState.players.forEach((p, i) => {
-    if (p.lastDiff < bestDiff) {
-      bestDiff = p.lastDiff;
-      winnerIdx = i;
-    }
-  });
 
   $('results-country').textContent = gameState.currentCountry.country;
   $('results-actual').textContent = formatNumber(actual);
@@ -326,35 +339,66 @@ function renderResultsScreen() {
   $('results-fact').textContent = fact ? `Fun Fact: ${fact}` : '';
   $('results-fact').style.display = fact ? 'block' : 'none';
 
-  const sortedByDiff = [...gameState.players].map((p, i) => ({ p, i, pts: roundPoints[i] }))
-    .sort((a, b) => a.p.lastDiff - b.p.lastDiff);
-  const list = $('results-list');
-  list.innerHTML = sortedByDiff.map(({ p, i, pts }) => {
-    const isWinner = i === winnerIdx;
-    const pct = actual > 0 ? (p.lastDiff / actual * 100).toFixed(1) : '0';
-    const diffClass = pct < 10 ? 'very-close' : pct < 50 ? 'close' : '';
-    return `
-      <div class="result-row ${isWinner ? 'winner' : ''}">
-        <div class="result-avatar" style="background:${getAvatarColor(i)}22;color:${getAvatarColor(i)}">${getInitials(p.name)}</div>
-        <div class="result-info">
-          <div class="result-name">${p.name} ${isWinner ? '⭐' : ''}</div>
-          <div class="result-guess">Guessed ${formatNumber(p.lastGuess)}</div>
-        </div>
-        <div class="result-diff ${diffClass}">
-          ${formatNumber(p.lastDiff)} off<br><small>${pct}%</small>
-        </div>
-        <div class="result-points">+${pts}</div>
-      </div>
-    `;
-  }).join('');
+  if (isSoloMode()) {
+    $('results-title').textContent = `Country ${gameState.currentRound} of ${SOLO_ROUNDS}`;
+    $('multi-result-section').style.display = 'none';
+    $('leaderboard-results-card').style.display = 'none';
+    $('solo-result-section').style.display = '';
+    $('btn-next-round').textContent = gameState.currentRound >= SOLO_ROUNDS ? 'See Final Score →' : 'Next Country →';
 
-  const pointMessages = sortedByDiff.filter(({ pts }) => pts > 0)
-    .map(({ p, pts }) => `${p.name} +${pts}`).join(', ');
-  $('point-award').textContent = pointMessages
-    ? `Points awarded: ${pointMessages}`
-    : 'No points this round.';
+    const guess = gameState.players[0].lastGuess;
+    const pts = getSoloPoints(actual, guess);
+    const error = Math.abs(actual - guess) / actual;
+    const accuracy = Math.max(0, Math.round((1 - Math.min(error, 1)) * 100));
 
-  renderLeaderboard('leaderboard-results');
+    animateCounter($('solo-points-counter'), pts);
+    $('solo-accuracy').textContent = `${accuracy}% Accurate!`;
+    $('solo-session-total').textContent = `Session Total: ${formatNumber(gameState.players[0].score)} pts`;
+  } else {
+    $('results-title').textContent = 'Round Results';
+    $('multi-result-section').style.display = '';
+    $('leaderboard-results-card').style.display = '';
+    $('solo-result-section').style.display = 'none';
+    $('btn-next-round').textContent = 'Next Round';
+
+    const roundPoints = getRoundPoints();
+    let winnerIdx = -1;
+    let bestDiff = Infinity;
+    gameState.players.forEach((p, i) => {
+      if (p.lastDiff < bestDiff) { bestDiff = p.lastDiff; winnerIdx = i; }
+    });
+
+    const sortedByDiff = [...gameState.players].map((p, i) => ({ p, i, pts: roundPoints[i] }))
+      .sort((a, b) => a.p.lastDiff - b.p.lastDiff);
+    const list = $('results-list');
+    list.innerHTML = sortedByDiff.map(({ p, i, pts }) => {
+      const isWinner = i === winnerIdx;
+      const pct = actual > 0 ? (p.lastDiff / actual * 100).toFixed(1) : '0';
+      const diffClass = pct < 10 ? 'very-close' : pct < 50 ? 'close' : '';
+      return `
+        <div class="result-row ${isWinner ? 'winner' : ''}">
+          <div class="result-avatar" style="background:${getAvatarColor(i)}22;color:${getAvatarColor(i)}">${getInitials(p.name)}</div>
+          <div class="result-info">
+            <div class="result-name">${p.name} ${isWinner ? '⭐' : ''}</div>
+            <div class="result-guess">Guessed ${formatNumber(p.lastGuess)}</div>
+          </div>
+          <div class="result-diff ${diffClass}">
+            ${formatNumber(p.lastDiff)} off<br><small>${pct}%</small>
+          </div>
+          <div class="result-points">+${pts}</div>
+        </div>
+      `;
+    }).join('');
+
+    const pointMessages = sortedByDiff.filter(({ pts }) => pts > 0)
+      .map(({ p, pts }) => `${p.name} +${pts}`).join(', ');
+    $('point-award').textContent = pointMessages
+      ? `Points awarded: ${pointMessages}`
+      : 'No points this round.';
+
+    renderLeaderboard('leaderboard-results');
+  }
+
   showScreen('screen-results');
 }
 
@@ -362,33 +406,60 @@ function finishRound() {
   stopHeartbeat();
   const actual = gameState.currentCountry.population;
 
-  gameState.players.forEach((p, i) => {
-    if (p.currentGuess < 0) {
-      p.lastDiff = Infinity;
-      p.lastGuess = 0;
-    } else {
-      const diff = Math.abs(p.currentGuess - actual);
-      p.lastDiff = diff;
-      p.lastGuess = p.currentGuess;
-    }
-  });
-
-  const roundPoints = getRoundPoints();
-  gameState.players.forEach((p, i) => {
-    p.score += roundPoints[i];
-  });
+  if (isSoloMode()) {
+    const raw = gameState.players[0].currentGuess;
+    const guess = raw < 0 ? 0 : raw;
+    const pts = raw < 0 ? 0 : getSoloPoints(actual, guess);
+    gameState.players[0].lastGuess = guess;
+    gameState.players[0].lastDiff = Math.abs(guess - actual);
+    gameState.players[0].score += pts;
+  } else {
+    gameState.players.forEach((p) => {
+      if (p.currentGuess < 0) {
+        p.lastDiff = Infinity;
+        p.lastGuess = 0;
+      } else {
+        p.lastDiff = Math.abs(p.currentGuess - actual);
+        p.lastGuess = p.currentGuess;
+      }
+    });
+    const roundPoints = getRoundPoints();
+    gameState.players.forEach((p, i) => { p.score += roundPoints[i]; });
+  }
 
   renderResultsScreen();
   saveState('screen-results');
 }
 
 function checkWinner() {
+  if (isSoloMode()) {
+    if (gameState.currentRound < SOLO_ROUNDS) return false;
+    stopHeartbeat();
+    const total = gameState.players[0].score;
+    const prevBest = parseInt(localStorage.getItem(SOLO_HIGH_SCORE_KEY), 10) || 0;
+    const isNewRecord = total > prevBest;
+    if (isNewRecord) localStorage.setItem(SOLO_HIGH_SCORE_KEY, String(total));
+    $('winner-name').textContent = 'Game Complete!';
+    $('winner-score').textContent = `Your Score: ${formatNumber(total)} pts`;
+    $('final-leaderboard').style.display = 'none';
+    const hsDisplay = $('solo-highscore-display');
+    hsDisplay.style.display = '';
+    $('solo-high-score-text').textContent = isNewRecord
+      ? `🏆 New High Score: ${formatNumber(total)} pts!`
+      : `High Score: ${formatNumber(Math.max(total, prevBest))} pts`;
+    $('solo-new-record').style.display = isNewRecord ? '' : 'none';
+    showScreen('screen-winner');
+    clearState();
+    return true;
+  }
+
   const winner = gameState.players.find(p => p.score >= gameState.targetScore);
   if (!winner) return false;
   stopHeartbeat();
-
   $('winner-name').textContent = `${winner.name} Wins!`;
   $('winner-score').textContent = `Final Score: ${winner.score}`;
+  $('final-leaderboard').style.display = '';
+  $('solo-highscore-display').style.display = 'none';
   renderLeaderboard('final-leaderboard');
   showScreen('screen-winner');
   clearState();
@@ -402,7 +473,11 @@ function nextRound() {
   gameState.players.forEach(p => { p.currentGuess = 0; p.lastDiff = 0; p.lastGuess = 0; });
   cheatState.flagged = false;
   pickRandomCountry();
-  showPassScreen();
+  if (isSoloMode()) {
+    showGuessScreen();
+  } else {
+    showPassScreen();
+  }
 }
 
 function initGame() {
@@ -426,7 +501,18 @@ function initGame() {
   gameState.currentRound = 1;
   gameState.currentPlayerTurn = 0;
   gameState.usedCountryIndices = [];
-  renderLeaderboard('leaderboard-ready');
+  if (isSoloMode()) {
+    const prevBest = parseInt(localStorage.getItem(SOLO_HIGH_SCORE_KEY), 10) || 0;
+    $('leaderboard-ready').innerHTML = `
+      <div class="solo-ready-info">
+        <div class="solo-ready-name">${gameState.players[0].name}</div>
+        <div class="solo-ready-best">${prevBest > 0 ? 'Best: ' + formatNumber(prevBest) + ' pts' : 'No record yet'}</div>
+        <div class="solo-ready-sub">10 countries &bull; up to 1,000 pts each</div>
+      </div>
+    `;
+  } else {
+    renderLeaderboard('leaderboard-ready');
+  }
   showScreen('screen-ready');
   saveState('screen-ready');
 }
@@ -491,7 +577,11 @@ async function init() {
 
   $('btn-start-game').addEventListener('click', () => {
     pickRandomCountry();
-    showPassScreen();
+    if (isSoloMode()) {
+      showGuessScreen();
+    } else {
+      showPassScreen();
+    }
   });
 
   $('btn-pass-ready').addEventListener('click', () => {
