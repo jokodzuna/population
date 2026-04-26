@@ -294,8 +294,26 @@ function isSoloMode() { return gameState.numPlayers === 1; }
 
 function getSoloPoints(actual, guess) {
   const safeGuess = Math.max(guess, 1);
-  const logError = Math.abs(Math.log10(actual) - Math.log10(safeGuess));
-  return Math.max(0, Math.round(1000 * (1 - logError)));
+  const diff = Math.abs(Math.log10(actual) - Math.log10(safeGuess));
+  let pts;
+  if      (diff <= 0.1) pts = 1000 + (900  - 1000) * (diff        / 0.1);
+  else if (diff <= 0.2) pts =  900 + (500  -  900) * ((diff - 0.1) / 0.1);
+  else if (diff <= 0.7) pts =  500 + (100  -  500) * ((diff - 0.2) / 0.5);
+  else if (diff <= 1.0) pts =  100 + ( 10  -  100) * ((diff - 0.7) / 0.3);
+  else if (diff <= 2.0) pts =   10 + (  0  -   10) * ((diff - 1.0) / 1.0);
+  else                  pts = 0;
+  return Math.round(Math.max(0, pts));
+}
+
+function getSoloMessage(pts) {
+  if (pts >= 1000) return 'Are you even normal? 🤯';
+  if (pts >=  900) return 'You are genius!';
+  if (pts >=  700) return 'Clever clogs alert!';
+  if (pts >=  500) return 'Good guess';
+  if (pts >=  300) return 'Not bad';
+  if (pts >=  100) return 'Were you skipping lessons?';
+  if (pts >=   10) return 'What planet are you from?';
+  return 'Really?....';
 }
 
 function animateCounter(el, target, duration) {
@@ -348,27 +366,10 @@ function renderResultsScreen() {
     $('btn-next-round').textContent = gameState.currentRound >= SOLO_ROUNDS ? 'See Final Score →' : 'Next Country →';
 
     const guess = gameState.players[0].lastGuess;
-    const pts = gameState.players[0].lastGuess <= 0 ? 0 : getSoloPoints(actual, guess);
-    const safeGuess = Math.max(guess, 1);
-    const factor = Math.max(actual, safeGuess) / Math.min(actual, safeGuess);
-    const factorDisplay = Math.round(factor * 10) / 10;
-
-    let factorText, factorColor;
-    if (guess <= 0) {
-      factorText = 'No guess submitted';
-      factorColor = 'var(--text-muted)';
-    } else if (factor < 1.1) {
-      factorText = '🎯 Almost Perfect!';
-      factorColor = 'var(--success)';
-    } else {
-      factorText = `Off by ${factorDisplay}x`;
-      factorColor = factor < 2 ? 'var(--success)' : factor < 5 ? 'var(--warning)' : 'var(--danger)';
-    }
+    const pts = guess <= 0 ? 0 : getSoloPoints(actual, guess);
 
     animateCounter($('solo-points-counter'), pts);
-    const accEl = $('solo-accuracy');
-    accEl.textContent = factorText;
-    accEl.style.color = factorColor;
+    $('solo-accuracy').textContent = getSoloMessage(pts);
     $('solo-session-total').textContent = `Session Total: ${formatNumber(gameState.players[0].score)} pts`;
   } else {
     $('results-title').textContent = 'Round Results';
