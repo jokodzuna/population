@@ -3,18 +3,695 @@
     "country": "India",
     "population": 1476625576,
     "facts": [
-      "India has a floating post office! It is on a boat in a lake in Dal, Srinagar.",
-      "The game of Snakes and Ladders started in India a long time ago to teach kids about good and bad.",
-      "India is the first place where people found and mined diamonds in the ground."
+      "India has a floating post office on a boat in a lake in Srinagar.",
+      "The game Snakes and Ladders was invented in India long ago to teach kids about good and bad.",
+      "India produces the most mangoes in the world, over 20 million tonnes every year!",
+      "India is the birthplace of chess.",
+      "The number system we use today (0,1,2,3...) was invented by Indian mathematicians."
     ]
   },
   {
     "country": "China",
     "population": 1412914089,
     "facts": [
-      "China has the longest bridge in the world. It is called the Danyang-Kunshan Grand Bridge and is 102 miles (164 kilometers) long!",
+      "China has the longest bridge in the world, the Danyang-Kunshan Grand Bridge, which is 164 kilometers long!",
       "In China, every year has an animal name, like the Year of the Tiger or Year of the Dragon.",
-      "China built a giant solar power plant shaped like a giant Panda bear that you can see from space!"
+      "China built a giant solar power plant shaped like a panda bear that you can see from space!",
+      "All of China uses one time zone, even though the country is big enough to have 5 time zones.",
+      "Table tennis (ping pong) is the most popular sport in China."
+    ]
+  },
+  {
+    "country": "United States",
+    "population": 349035494,
+    "facts": [
+      "The US flag with 50 stars was designed by a high school student for a class project.",
+      "The United States and Canada share the longest border in the world that has no soldiers guarding it.",
+      "One third of all the airports in the world are located in the US.",
+      "The Internet was first thought up in the United States."
+    ]
+  },
+  {
+    "country": "Indonesia",
+    "population": 287886782,
+    "facts": [
+      "Indonesia is made up of over 17,000 islands, making it the largest island nation in the world!",
+      "Indonesia is home to the Komodo dragon, the biggest lizard on Earth.",
+      "Indonesia has the largest Muslim population in the world."
+    ]
+  },
+  {
+    "country": "Pakistan",
+    "population": 259299791,
+    "facts": [
+      "A small city called Sialkot in Pakistan makes 40% of all the soccer balls used in the world!",
+      "Pakistan has the second largest Muslim population in the world."
+    ]
+  },
+  {
+    "country": "Nigeria",
+    "population": 242432000,
+    "facts": [
+      "Nigeria is home to over 520 different languages spoken by its people!",
+      "Nigeria has around 370 different tribes that are officially recognized."
+    ]
+  },
+  {
+    "country": "Brazil",
+    "population": 213563000,
+    "facts": [
+      "The Amazon Rainforest in Brazil provides about 20% of the world's oxygen.",
+      "Brazil is famous for its Carnival celebration with colorful costumes and dancing in the streets.",
+      "Brazil is the world's largest coffee producer, making about 35% of all coffee.",
+      "Brazil has over 4000 airports!"
+    ]
+  },
+  {
+    "country": "Bangladesh",
+    "population": 177818000,
+    "facts": [
+      "Bangladesh is the most crowded large country in the world, with about 3,000 people living in every square mile.",
+      "Bangladesh is the only country in the world whose name ends with the letter H."
+    ]
+  },
+  {
+    "country": "Russia",
+    "population": 143394000,
+    "facts": [
+      "Russia has 11 time zones, so the time difference between the east and west is about 10 hours!",
+      "Russian scientists once grew a plant from a seed that was more than 30,000 years old.",
+      "Russia has over 13,000 villages that nobody lives in anymore."
+    ]
+  },
+  {
+    "country": "Ethiopia",
+    "population": 138902000,
+    "facts": [
+      "Ethiopia uses a calendar that is 7 to 8 years behind the calendar most of the world uses.",
+      "Ethiopia celebrates its New Year in September, not January!",
+      "In 1974, scientists found a 3.2 million-year-old human skeleton in Ethiopia."
+    ]
+  },
+  {
+    "country": "Mexico",
+    "population": 132998000,
+    "facts": [
+      "Mexico is home to the largest pyramid in the world by volume, the Great Pyramid of Cholula. Its base is 4 times bigger than Egypt's Great Pyramid!",
+      "A Mexican engineer invented the first color television system.",
+      "Millions of monarch butterflies fly thousands of miles to and from Mexico every year."
+    ]
+  },
+  {
+    "country": "Japan",
+    "population": 122428000,
+    "facts": [
+      "Japan has more than 6,800 islands.",
+      "Japan's bullet trains can travel up to 320 kilometers per hour!",
+      "Japanese people live longer than almost anyone else in the world.",
+      "In Japan, the green light on traffic signals looks blue because in Japanese culture blue and green are seen as shades of the same color."
+    ]
+  },
+  {
+    "country": "Egypt",
+    "population": 120101000,
+    "facts": [
+      "Bread was invented in Egypt around 8,000 years ago!",
+      "Egypt is the most popular tourist destination in Africa, attracting around 10 million visitors per year."
+    ]
+  },
+  {
+    "country": "Philippines",
+    "population": 117724000,
+    "facts": [
+      "The Philippines is made up of over 7,600 islands!",
+      "About a quarter of all overseas nurses in the world come from the Philippines."
+    ]
+  },
+  {
+    "country": "DR Congo",
+    "population": 116452000,
+    "facts": [
+      "The Democratic Republic of the Congo loves mayonnaise so much that people put it on almost everything!",
+      "Belgium ruled this country from 1908 to 1960."
+    ]
+  },
+  {
+    "country": "Vietnam",
+    "population": 102177000,
+    "facts": [
+      "Vietnam is the world's largest exporter of cashew nuts and black pepper.",
+      "The world's largest cave is located in Vietnam."
+    ]
+  },
+  {
+    "country": "Iran",
+    "population": 93168500,
+    "facts": [
+      "Iran has had 27 different capital cities in its history, more than any other country!",
+      "McDonald's is not allowed to operate in Iran."
+    ]
+  },
+  {
+    "country": "Turkey",
+    "population": 87926100,
+    "facts": [
+      "Turkey has a dessert called tavuk gogsu that is made with shredded chicken breast, milk, sugar, and cinnamon!",
+      "Istanbul in Turkey is the only city in the world that sits on two continents, Europe and Asia."
+    ]
+  },
+  {
+    "country": "Germany",
+    "population": 83644300,
+    "facts": [
+      "In Germany, everyone, even people from other countries, can go to college for free!",
+      "Germany shares borders with 9 different countries."
+    ]
+  },
+  {
+    "country": "Tanzania",
+    "population": 72563800,
+    "facts": [
+      "Mount Kilimanjaro in Tanzania is the highest mountain in Africa, standing at 5,895 meters.",
+      "Freddie Mercury, the famous singer from the band Queen, was born in Zanzibar, which is now part of Tanzania."
+    ]
+  },
+  {
+    "country": "Thailand",
+    "population": 71559600,
+    "facts": [
+      "Thailand is the only country in Southeast Asia that was never taken over by European countries.",
+      "Thailand is the world's biggest exporter of rice.",
+      "Every year Thailand holds a Monkey Buffet Festival where people give 4.5 tons of fruit and candy to 3,000 monkeys!"
+    ]
+  },
+  {
+    "country": "United Kingdom",
+    "population": 69931500,
+    "facts": [
+      "People in the UK drink 165 million cups of tea every day!",
+      "The Industrial Revolution started in Britain.",
+      "The longest town name in Europe is in Wales: Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch."
+    ]
+  },
+  {
+    "country": "France",
+    "population": 66746400,
+    "facts": [
+      "France is the most visited country in the world, with 89 million tourists every year.",
+      "About 8 million people see the Mona Lisa painting at the Louvre museum in Paris every year.",
+      "If you count overseas territories, France covers the most time zones of any country, 12 in total!"
+    ]
+  },
+  {
+    "country": "South Africa",
+    "population": 65453100,
+    "facts": [
+      "South Africa is called the 'Rainbow Nation' because it has 11 official languages!",
+      "There is a street in Soweto called Vilakazi Street that was home to two Nobel Peace Prize winners: Nelson Mandela and Desmond Tutu."
+    ]
+  },
+  {
+    "country": "Italy",
+    "population": 58926200,
+    "facts": [
+      "Italians have only been eating tomatoes since the 1500s, when they were brought from Peru.",
+      "Naples, Italy is the birthplace of pizza!",
+      "There is a fountain in Italy that flows red wine 24 hours a day for people walking a pilgrimage."
+    ]
+  },
+  {
+    "country": "Kenya",
+    "population": 58636400,
+    "facts": [
+      "The Kalenjin tribe in Kenya produces the world's best long-distance runners.",
+      "Kenya is home to the Big Five animals: lions, elephants, buffaloes, leopards, and rhinos."
+    ]
+  },
+  {
+    "country": "Myanmar",
+    "population": 55184800,
+    "facts": [
+      "Myanmar is one of only three countries in the world that does not use the metric system."
+    ]
+  },
+  {
+    "country": "Colombia",
+    "population": 53936200,
+    "facts": [
+      "Colombia produces some of the world's finest emeralds, green gemstones.",
+      "Colombia has a river called Cano Cristales that looks like a 'liquid rainbow' with many vivid colors."
+    ]
+  },
+  {
+    "country": "Sudan",
+    "population": 53282700,
+    "facts": [
+      "In Arabic, the name Sudan means 'the land of the blacks'.",
+      "Sudan actually has 223 pyramids, which is double the number of pyramids in Egypt!"
+    ]
+  },
+  {
+    "country": "Uganda",
+    "population": 52761500,
+    "facts": [
+      "Uganda is home to 11% of all the birds in the world!",
+      "The endangered mountain gorilla lives in Uganda's Ruwenzori Mountains."
+    ]
+  },
+  {
+    "country": "South Korea",
+    "population": 51600400,
+    "facts": [
+      "In South Korea, people say 'kimchi' instead of 'cheese' when taking photos!",
+      "Kimchi and rice are the two most important foods in South Korea, and this has been true for 3,000 years."
+    ]
+  },
+  {
+    "country": "Algeria",
+    "population": 48028300,
+    "facts": [
+      "Algeria is the largest country in Africa by land area.",
+      "About 80% of Algeria is covered by the Sahara Desert."
+    ]
+  },
+  {
+    "country": "Iraq",
+    "population": 48007400,
+    "facts": [
+      "Iraq is often called the 'Cradle of Civilization' because some of the world's first cities were built there over 5,000 years ago.",
+      "The capital city of Iraq is Baghdad."
+    ]
+  },
+  {
+    "country": "Spain",
+    "population": 47850800,
+    "facts": [
+      "Spain's national anthem has no words, so nobody sings along!",
+      "The Sagrada Familia church in Barcelona has been under construction since 1882, longer than the pyramids took to build."
+    ]
+  },
+  {
+    "country": "Argentina",
+    "population": 46003700,
+    "facts": [
+      "Argentina is home to the world's widest street, Avenida 9 de Julio in Buenos Aires, which spans 140 meters!",
+      "The tango dance was invented in the working-class neighborhoods of Buenos Aires, Argentina."
+    ]
+  },
+  {
+    "country": "Afghanistan",
+    "population": 45047100,
+    "facts": [
+      "Afghanistan's flag has a building on it.",
+      "The capital city of Afghanistan is Kabul."
+    ]
+  },
+  {
+    "country": "Yemen",
+    "population": 42961700,
+    "facts": [
+      "The capital city of Yemen is Sana'a."
+    ]
+  },
+  {
+    "country": "Canada",
+    "population": 40467700,
+    "facts": [
+      "Canada has more lakes than every other country in the world put together!",
+      "Canada's coastline stretches over 150,000 miles.",
+      "Canada is the second-largest country in the world by area.",
+      "The maple leaf has been a symbol of Canada since 1806."
+    ]
+  },
+  {
+    "country": "Angola",
+    "population": 40215200,
+    "facts": [
+      "More people speak Portuguese in Angola than in Portugal itself!",
+      "Angola is one of the largest oil producers in Africa."
+    ]
+  },
+  {
+    "country": "Ukraine",
+    "population": 39535800,
+    "facts": [
+      "Ukraine is the largest country that is entirely within Europe.",
+      "The world's worst nuclear accident happened at Chernobyl in Ukraine in 1986."
+    ]
+  },
+  {
+    "country": "Morocco",
+    "population": 38762400,
+    "facts": [
+      "Morocco is home to the world's oldest continuously operating university, founded in 859 AD.",
+      "The capital city of Morocco is Rabat."
+    ]
+  },
+  {
+    "country": "Poland",
+    "population": 37843200,
+    "facts": [
+      "The flag of Poland is the reverse of Indonesia's flag: Poland has white on top and red on the bottom.",
+      "The capital city of Poland is Warsaw."
+    ]
+  },
+  {
+    "country": "Uzbekistan",
+    "population": 37724200,
+    "facts": [
+      "Uzbekistan is one of only two countries in the world that are completely surrounded by other landlocked countries.",
+      "The capital city of Uzbekistan is Tashkent."
+    ]
+  },
+  {
+    "country": "Mozambique",
+    "population": 36639900,
+    "facts": [
+      "Mozambique's flag is the only national flag that has a modern weapon on it, an AK-47 rifle.",
+      "The capital city of Mozambique is Maputo."
+    ]
+  },
+  {
+    "country": "Malaysia",
+    "population": 36385100,
+    "facts": [
+      "The pomelo, the largest citrus fruit on the planet, comes from Malaysia.",
+      "The Petronas Towers in Kuala Lumpur were once the tallest buildings in the world and are still the tallest twin towers."
+    ]
+  },
+  {
+    "country": "Ghana",
+    "population": 35697600,
+    "facts": [
+      "Ghana was the first country in sub-Saharan Africa to become independent from Britain.",
+      "The capital city of Ghana is Accra."
+    ]
+  },
+  {
+    "country": "Saudi Arabia",
+    "population": 35165800,
+    "facts": [
+      "Saudi Arabia is the only country in the world that does not have any rivers!",
+      "Saudi Arabia is home to the cities of Mecca and Medina, the two holiest cities in Islam."
+    ]
+  },
+  {
+    "country": "Peru",
+    "population": 34922100,
+    "facts": [
+      "Peru is home to Machu Picchu, an ancient Inca city high in the Andes mountains.",
+      "Peru has more than 3,700 species of butterflies, which is 20% of all known butterfly species in the world.",
+      "Peru grows more than 2,800 different types of potatoes, more than any other country."
+    ]
+  },
+  {
+    "country": "Madagascar",
+    "population": 33522100,
+    "facts": [
+      "Madagascar is home to animals that are found nowhere else on Earth, like lemurs.",
+      "About 90% of all the plants and animals in Madagascar exist only on this island."
+    ]
+  },
+  {
+    "country": "Ivory Coast",
+    "population": 33494300,
+    "facts": [
+      "Ivory Coast is the world's largest producer of cocoa beans, which are used to make chocolate.",
+      "The capital city of Ivory Coast is Yamoussoukro, but the biggest city is Abidjan."
+    ]
+  },
+  {
+    "country": "Nepal",
+    "population": 31765000,
+    "facts": [
+      "Nepal is home to Mount Everest, the highest mountain in the world at 8,848 meters.",
+      "Nepal is the only country that does not have a rectangular flag. Its flag is shaped like two triangles."
+    ]
+  },
+  {
+    "country": "Cameroon",
+    "population": 30889000,
+    "facts": [
+      "Cameroon is often called 'Africa in miniature' because it has almost every type of landscape found on the continent.",
+      "The capital city of Cameroon is Yaounde."
+    ]
+  },
+  {
+    "country": "Venezuela",
+    "population": 30125000,
+    "facts": [
+      "Venezuela is home to Angel Falls, the world's highest waterfall, which plunges 979 meters!",
+      "Venezuela is named after the Italian word for 'Little Venice' because of houses built on stilts over water."
+    ]
+  },
+  {
+    "country": "Niger",
+    "population": 29835000,
+    "facts": [
+      "Niger is named after the Niger River, and the name comes from a local word meaning 'river of rivers'.",
+      "The capital city of Niger is Niamey."
+    ]
+  },
+  {
+    "country": "Australia",
+    "population": 27245000,
+    "facts": [
+      "Australia is home to animals that lay eggs but also feed their babies milk, called monotremes. The platypus and echidna live there!",
+      "The Great Barrier Reef off Australia's coast is the world's largest coral reef system.",
+      "Australia has more kangaroos than people!",
+      "There are no snakes in New Zealand, but Australia is home to many venomous snakes."
+    ]
+  },
+  {
+    "country": "North Korea",
+    "population": 26425000,
+    "facts": [
+      "North Korea claims to have a 100% literacy rate, meaning everyone there can read and write.",
+      "In North Korea, there are only 15 approved hairstyles people can choose from."
+    ]
+  },
+  {
+    "country": "Mali",
+    "population": 25522000,
+    "facts": [
+      "Mali was once home to one of the richest empires in history, the Mali Empire, ruled by the famous king Mansa Musa.",
+      "The capital city of Mali is Bamako."
+    ]
+  },
+  {
+    "country": "Syria",
+    "population": 24955000,
+    "facts": [
+      "The capital city of Syria is Damascus, which is one of the oldest continuously inhabited cities in the world.",
+      "Syria is home to the ancient city of Palmyra."
+    ]
+  },
+  {
+    "country": "Burkina Faso",
+    "population": 24650000,
+    "facts": [
+      "Burkina Faso means 'Land of Incorruptible People' in the local languages.",
+      "The capital city of Burkina Faso is Ouagadougou."
+    ]
+  },
+  {
+    "country": "Sri Lanka",
+    "population": 22000000,
+    "facts": [
+      "Sri Lanka was connected to India by a thin land bridge until 1480, making it one of the world's youngest islands.",
+      "Sri Lanka has two official capitals: Colombo and Sri Jayawardenepura Kotte."
+    ]
+  },
+  {
+    "country": "Malawi",
+    "population": 21950000,
+    "facts": [
+      "Malawi is nicknamed 'The Warm Heart of Africa' because of the kindness of its people.",
+      "The capital city of Malawi is Lilongwe."
+    ]
+  },
+  {
+    "country": "Zambia",
+    "population": 21855000,
+    "facts": [
+      "Zambia is home to Victoria Falls, one of the largest waterfalls in the world, which local people call 'The Smoke That Thunders'.",
+      "The capital city of Zambia is Lusaka."
+    ]
+  },
+  {
+    "country": "Kazakhstan",
+    "population": 20450000,
+    "facts": [
+      "Kazakhstan is the largest landlocked country in the world.",
+      "The capital city of Kazakhstan is Astana."
+    ]
+  },
+  {
+    "country": "Chile",
+    "population": 19725000,
+    "facts": [
+      "Chile is home to the driest desert on Earth, the Atacama Desert.",
+      "Easter Island, famous for its giant stone heads called moai, belongs to Chile."
+    ]
+  },
+  {
+    "country": "Romania",
+    "population": 18950000,
+    "facts": [
+      "Romania is home to Transylvania, the region famous for the Dracula legend.",
+      "The capital city of Romania is Bucharest."
+    ]
+  },
+  {
+    "country": "Guatemala",
+    "population": 18450000,
+    "facts": [
+      "The ancient Mayans built amazing pyramids and cities in Guatemala.",
+      "Spanish is the official language of Guatemala, but 23 other languages are also spoken."
+    ]
+  },
+  {
+    "country": "Chad",
+    "population": 18280000,
+    "facts": [
+      "Chad is named after Lake Chad, which was once one of the largest lakes in Africa.",
+      "The capital city of Chad is N'Djamena."
+    ]
+  },
+  {
+    "country": "Somalia",
+    "population": 18145000,
+    "facts": [
+      "Somalia has the longest coastline of any country in mainland Africa.",
+      "The capital city of Somalia is Mogadishu."
+    ]
+  },
+  {
+    "country": "Ecuador",
+    "population": 18125000,
+    "facts": [
+      "Ecuador is named after the equator, which runs right through the country!",
+      "The Galapagos Islands, which inspired Charles Darwin's theory of evolution, belong to Ecuador."
+    ]
+  },
+  {
+    "country": "Netherlands",
+    "population": 17720000,
+    "facts": [
+      "The Netherlands has the tallest people in the world on average!",
+      "There are more bicycles than people in the Netherlands."
+    ]
+  },
+  {
+    "country": "Senegal",
+    "population": 17650000,
+    "facts": [
+      "Senegal is famous for its music, especially a type called mbalax.",
+      "The capital city of Senegal is Dakar."
+    ]
+  },
+  {
+    "country": "Cambodia",
+    "population": 17350000,
+    "facts": [
+      "Cambodia has never had a McDonald's because the local food is so popular!",
+      "The ancient temple of Angkor Wat in Cambodia is the largest religious monument in the world."
+    ]
+  },
+  {
+    "country": "Zimbabwe",
+    "population": 17150000,
+    "facts": [
+      "Zimbabwe has the highest literacy rate in Africa, meaning more people there can read and write than in any other African country.",
+      "The capital city of Zimbabwe is Harare."
+    ]
+  },
+  {
+    "country": "Guinea",
+    "population": 14750000,
+    "facts": [
+      "Guinea is home to Mount Nimba, which has unique plants and animals found nowhere else.",
+      "The capital city of Guinea is Conakry."
+    ]
+  },
+  {
+    "country": "Rwanda",
+    "population": 14450000,
+    "facts": [
+      "Rwanda has more women in its parliament than almost any other country in the world.",
+      "Rwanda is known as the 'Land of a Thousand Hills' because of its many hills and mountains."
+    ]
+  },
+  {
+    "country": "Benin",
+    "population": 14120000,
+    "facts": [
+      "Benin was the birthplace of the vodun religion, which inspired the idea of 'voodoo'.",
+      "The capital city of Benin is Porto-Novo."
+    ]
+  },
+  {
+    "country": "Burundi",
+    "population": 13950000,
+    "facts": [
+      "Burundi is one of the smallest countries in Africa but one of the most densely populated.",
+      "The capital city of Burundi is Gitega."
+    ]
+  },
+  {
+    "country": "Tunisia",
+    "population": 12650000,
+    "facts": [
+      "Tunisia was home to the ancient city of Carthage, which was once one of the most powerful cities in the world.",
+      "The capital city of Tunisia is Tunis."
+    ]
+  },
+  {
+    "country": "Bolivia",
+    "population": 12560000,
+    "facts": [
+      "Bolivia has the highest capital city in the world, La Paz, which sits at 3,650 meters above sea level.",
+      "Bolivia and its neighbor Peru share Lake Titicaca, the highest navigable lake in the world."
+    ]
+  },
+  {
+    "country": "Belgium",
+    "population": 11750000,
+    "facts": [
+      "Belgium is famous for inventing French fries, called 'frites' there.",
+      "The capital city of Belgium is Brussels, which is also the capital of the European Union."
+    ]
+  },
+  {
+    "country": "Haiti",
+    "population": 11720000,
+    "facts": [
+      "Haiti was the first country in the world led by people of African descent to become independent.",
+      "The capital city of Haiti is Port-au-Prince."
+    ]
+  },
+  {
+    "country": "Jordan",
+    "population": 11500000,
+    "facts": [
+      "Jordan is home to the ancient city of Petra, which was carved into pink sandstone cliffs.",
+      "The capital city of Jordan is Amman."
+    ]
+  },
+  {
+    "country": "Dominican Republic",
+    "population": 11450000,
+    "facts": [
+      "The Dominican Republic is called the 'Breadbasket of the Caribbean' because it grows so much food.",
+      "The capital city of the Dominican Republic is Santo Domingo."
+    ]
+  },
+  {
+    "country": "Cuba",
+    "population": 10892000,
+    "facts": [
+      "Cuba is famous for producing some of the world's finest cigars.",
+      "The capital city of Cuba is Havana."
     ]
   },
   {
@@ -22,15 +699,119 @@
     "population": 11350000,
     "facts": [
       "The capital city of South Sudan is Juba.",
-      "In South Sudan, people speak 2 main official languages (English and Arabic), but there are over 60 other local languages used by different groups!"
+      "In South Sudan, people speak 2 main official languages, English and Arabic, but there are over 60 other local languages!"
     ]
   },
   {
-    "country": "Oman",
-    "population": 4750000,
+    "country": "Sweden",
+    "population": 10700000,
     "facts": [
-      "The capital city of Oman is Muscat.",
-      "In Oman, the main official language is Arabic, but people also use 3 or 4 other common languages like English and Baluchi."
+      "Sweden has 267,570 islands, more than any other single country in the world!",
+      "The capital city of Sweden is Stockholm."
+    ]
+  },
+  {
+    "country": "Czech Republic",
+    "population": 10525000,
+    "facts": [
+      "The Czech Republic drinks more beer per person than any other country in the world.",
+      "The capital city of the Czech Republic is Prague."
+    ]
+  },
+  {
+    "country": "Honduras",
+    "population": 10515000,
+    "facts": [
+      "Honduras is home to the ancient Mayan ruins of Copan.",
+      "The capital city of Honduras is Tegucigalpa."
+    ]
+  },
+  {
+    "country": "Greece",
+    "population": 10250000,
+    "facts": [
+      "Greece is known as the birthplace of democracy, where people first voted to make decisions together.",
+      "The ancient Greeks invented the Olympic Games over 2,700 years ago."
+    ]
+  },
+  {
+    "country": "Azerbaijan",
+    "population": 10450000,
+    "facts": [
+      "Azerbaijan is called the 'Land of Fire' because of natural gas fires that have been burning on its hills for thousands of years.",
+      "The capital city of Azerbaijan is Baku."
+    ]
+  },
+  {
+    "country": "Portugal",
+    "population": 10395000,
+    "facts": [
+      "Portugal has the most sunshine hours in Europe, with some areas getting almost 300 sunny days a year.",
+      "There are more Portuguese speakers outside Portugal than in it, especially in Brazil."
+    ]
+  },
+  {
+    "country": "Hungary",
+    "population": 9950000,
+    "facts": [
+      "Hungary is home to the largest thermal water cave system in the world.",
+      "The capital city of Hungary is Budapest."
+    ]
+  },
+  {
+    "country": "Tajikistan",
+    "population": 10250000,
+    "facts": [
+      "Tajikistan is home to the Pamir Mountains, nicknamed the 'Roof of the World'.",
+      "The capital city of Tajikistan is Dushanbe."
+    ]
+  },
+  {
+    "country": "United Arab Emirates",
+    "population": 9650000,
+    "facts": [
+      "The Burj Khalifa in Dubai, UAE, is the tallest building in the world at 828 meters.",
+      "The capital city of the UAE is Abu Dhabi."
+    ]
+  },
+  {
+    "country": "Belarus",
+    "population": 9350000,
+    "facts": [
+      "Belarus is one of the most forested countries in Europe.",
+      "The capital city of Belarus is Minsk."
+    ]
+  },
+  {
+    "country": "Israel",
+    "population": 9325000,
+    "facts": [
+      "Israel is home to the Dead Sea, which is so salty that people can float on the water without swimming.",
+      "The capital city of Israel is Jerusalem."
+    ]
+  },
+  {
+    "country": "Austria",
+    "population": 9150000,
+    "facts": [
+      "Austria is famous for its classical music composers like Mozart and Beethoven.",
+      "The capital city of Austria is Vienna."
+    ]
+  },
+  {
+    "country": "Switzerland",
+    "population": 8950000,
+    "facts": [
+      "Switzerland has the longest tunnel in the world, the Gotthard Base Tunnel, at 57.1 km.",
+      "Switzerland eats the most chocolate per person in the world, about 10 kilos per person per year."
+    ]
+  },
+  {
+    "country": "Togo",
+    "population": 9450000,
+    "facts": [
+      "Togo is one of the world's largest producers of phosphate, which is used to make fertilizer.",
+      "The capital city of Togo is Lome."
     ]
   },
   {
@@ -38,15 +819,127 @@
     "population": 8950000,
     "facts": [
       "The capital city of Sierra Leone is Freetown.",
-      "In Sierra Leone, English is the official language, but people use about 25 different languages to talk to each other every day!"
+      "In Sierra Leone, English is the official language, but people use about 25 different languages every day."
     ]
   },
   {
-    "country": "Liberia",
-    "population": 5650000,
+    "country": "Hong Kong",
+    "population": 7490000,
     "facts": [
-      "The capital city of Liberia is Monrovia.",
-      "In Liberia, the official language is English, but there are over 20 other indigenous languages used across the country."
+      "Hong Kong has more skyscrapers than any other city in the world.",
+      "Hong Kong is a Special Administrative Region of China."
+    ]
+  },
+  {
+    "country": "Laos",
+    "population": 7850000,
+    "facts": [
+      "Laos is the only landlocked country in Southeast Asia.",
+      "The capital city of Laos is Vientiane."
+    ]
+  },
+  {
+    "country": "Paraguay",
+    "population": 6950000,
+    "facts": [
+      "Paraguay has a large hydroelectric dam shared with Brazil that produces almost all of Paraguay's electricity.",
+      "The capital city of Paraguay is Asuncion."
+    ]
+  },
+  {
+    "country": "Libya",
+    "population": 6920000,
+    "facts": [
+      "Libya has the highest percentage of desert in the world, with 99% of its land being desert.",
+      "The capital city of Libya is Tripoli."
+    ]
+  },
+  {
+    "country": "Bulgaria",
+    "population": 6850000,
+    "facts": [
+      "In Bulgaria, nodding your head means 'no' and shaking your head means 'yes', which is the opposite of most countries!",
+      "The capital city of Bulgaria is Sofia."
+    ]
+  },
+  {
+    "country": "Serbia",
+    "population": 6750000,
+    "facts": [
+      "Serbia is home to the oldest known human settlement in Europe, Lepenski Vir, which is over 8,000 years old.",
+      "The capital city of Serbia is Belgrade."
+    ]
+  },
+  {
+    "country": "El Salvador",
+    "population": 6380000,
+    "facts": [
+      "El Salvador is the smallest country in Central America.",
+      "The capital city of El Salvador is San Salvador."
+    ]
+  },
+  {
+    "country": "Nicaragua",
+    "population": 7150000,
+    "facts": [
+      "Nicaragua is home to Lake Nicaragua, the only freshwater lake in the world that has ocean-like sharks in it.",
+      "The capital city of Nicaragua is Managua."
+    ]
+  },
+  {
+    "country": "Kyrgyzstan",
+    "population": 7050000,
+    "facts": [
+      "Kyrgyzstan's flag features a sun with 40 rays, representing the 40 tribes that united to form the country.",
+      "The capital city of Kyrgyzstan is Bishkek."
+    ]
+  },
+  {
+    "country": "Turkmenistan",
+    "population": 6650000,
+    "facts": [
+      "Turkmenistan has a burning gas crater called the 'Door to Hell' that has been on fire since 1971.",
+      "The capital city of Turkmenistan is Ashgabat."
+    ]
+  },
+  {
+    "country": "Denmark",
+    "population": 5950000,
+    "facts": [
+      "Denmark is where LEGO bricks were invented! The name LEGO means 'play well' in Danish.",
+      "The capital city of Denmark is Copenhagen."
+    ]
+  },
+  {
+    "country": "Singapore",
+    "population": 6120000,
+    "facts": [
+      "Singapore is a city-state, meaning the whole country is just one city!",
+      "Singapore has a famous hotel with a boat-shaped rooftop garden and pool called Marina Bay Sands."
+    ]
+  },
+  {
+    "country": "Finland",
+    "population": 5580000,
+    "facts": [
+      "Finland has 178,947 islands, the third most of any country in the world.",
+      "The capital city of Finland is Helsinki."
+    ]
+  },
+  {
+    "country": "Norway",
+    "population": 5520000,
+    "facts": [
+      "Norway has 239,057 islands, the second most of any country in the world.",
+      "In 2008, Norway knighted a penguin!"
+    ]
+  },
+  {
+    "country": "Slovakia",
+    "population": 5420000,
+    "facts": [
+      "Slovakia has the highest number of castles and chateaux per person in the world.",
+      "The capital city of Slovakia is Bratislava."
     ]
   },
   {
@@ -58,11 +951,668 @@
     ]
   },
   {
+    "country": "Costa Rica",
+    "population": 5250000,
+    "facts": [
+      "Costa Rica has no army! It abolished its military in 1948.",
+      "Costa Rica is home to over 500,000 different species of plants and animals."
+    ]
+  },
+  {
+    "country": "Ireland",
+    "population": 5150000,
+    "facts": [
+      "Ireland is called the 'Emerald Isle' because of its lush green countryside.",
+      "The capital city of Ireland is Dublin."
+    ]
+  },
+  {
+    "country": "Liberia",
+    "population": 5650000,
+    "facts": [
+      "The capital city of Liberia is Monrovia.",
+      "In Liberia, the official language is English, but there are over 20 other indigenous languages."
+    ]
+  },
+  {
+    "country": "New Zealand",
+    "population": 5280000,
+    "facts": [
+      "New Zealand was the first country in the world to give women the right to vote, in 1893.",
+      "New Zealand is home to more sheep and cows than people.",
+      "There are no snakes in New Zealand."
+    ]
+  },
+  {
+    "country": "Oman",
+    "population": 4750000,
+    "facts": [
+      "The capital city of Oman is Muscat.",
+      "In Oman, the main official language is Arabic, but people also use English and Baluchi."
+    ]
+  },
+  {
+    "country": "Kuwait",
+    "population": 4350000,
+    "facts": [
+      "Kuwait has the strongest currency in the world, the Kuwaiti dinar.",
+      "The capital city of Kuwait is Kuwait City."
+    ]
+  },
+  {
+    "country": "Mauritania",
+    "population": 5050000,
+    "facts": [
+      "Mauritania is one of the least densely populated countries in the world, with lots of empty desert.",
+      "The capital city of Mauritania is Nouakchott."
+    ]
+  },
+  {
+    "country": "Panama",
+    "population": 4550000,
+    "facts": [
+      "The Panama Canal connects the Atlantic and Pacific Oceans, and over 14,000 ships pass through it each year.",
+      "The capital city of Panama is Panama City."
+    ]
+  },
+  {
+    "country": "Croatia",
+    "population": 3950000,
+    "facts": [
+      "Croatia is home to the world's smallest town, Hum, which has only about 20 people.",
+      "The capital city of Croatia is Zagreb."
+    ]
+  },
+  {
+    "country": "Georgia",
+    "population": 3720000,
+    "facts": [
+      "Georgia is considered the birthplace of wine, with wine-making dating back over 8,000 years.",
+      "The capital city of Georgia is Tbilisi."
+    ]
+  },
+  {
+    "country": "Eritrea",
+    "population": 3850000,
+    "facts": [
+      "Eritrea has the most colorful and unique traditional coffee ceremony in the Horn of Africa.",
+      "The capital city of Eritrea is Asmara."
+    ]
+  },
+  {
+    "country": "Uruguay",
+    "population": 3420000,
+    "facts": [
+      "Uruguay was the first country in the world to fully legalize marijuana.",
+      "The capital city of Uruguay is Montevideo."
+    ]
+  },
+  {
+    "country": "Mongolia",
+    "population": 3520000,
+    "facts": [
+      "Mongolia is the most sparsely populated country in the world, with more horses than people.",
+      "The capital city of Mongolia is Ulaanbaatar."
+    ]
+  },
+  {
+    "country": "Bosnia and Herzegovina",
+    "population": 3180000,
+    "facts": [
+      "Bosnia and Herzegovina is home to Europe's only remaining jungle.",
+      "The capital city of Bosnia and Herzegovina is Sarajevo."
+    ]
+  },
+  {
+    "country": "Puerto Rico",
+    "population": 3220000,
+    "facts": [
+      "Puerto Rico is called the 'Island of Enchantment' because of its beautiful beaches and rainforests.",
+      "The capital city of Puerto Rico is San Juan."
+    ]
+  },
+  {
+    "country": "Armenia",
+    "population": 2780000,
+    "facts": [
+      "Armenia was the first country in the world to make Christianity its official religion, way back in 301 AD.",
+      "The capital city of Armenia is Yerevan."
+    ]
+  },
+  {
+    "country": "Albania",
+    "population": 2820000,
+    "facts": [
+      "Albania has over 173,000 bunkers left over from its communist past, scattered across the country.",
+      "The capital city of Albania is Tirana."
+    ]
+  },
+  {
+    "country": "Lithuania",
+    "population": 2710000,
+    "facts": [
+      "Lithuania was the first Soviet republic to declare independence from the Soviet Union in 1990.",
+      "The capital city of Lithuania is Vilnius."
+    ]
+  },
+  {
+    "country": "Qatar",
+    "population": 2750000,
+    "facts": [
+      "Qatar is one of the richest countries in the world because of its natural gas and oil.",
+      "The capital city of Qatar is Doha."
+    ]
+  },
+  {
+    "country": "Jamaica",
+    "population": 2820000,
+    "facts": [
+      "Jamaica is the birthplace of reggae music, made famous by Bob Marley.",
+      "The capital city of Jamaica is Kingston."
+    ]
+  },
+  {
+    "country": "Moldova",
+    "population": 2420000,
+    "facts": [
+      "Moldova is one of the least visited countries in the world.",
+      "The capital city of Moldova is Chisinau."
+    ]
+  },
+  {
+    "country": "Namibia",
+    "population": 2650000,
+    "facts": [
+      "Namibia is home to the world's oldest desert, the Namib Desert.",
+      "The capital city of Namibia is Windhoek."
+    ]
+  },
+  {
+    "country": "Gambia",
+    "population": 2880000,
+    "facts": [
+      "The Gambia is the smallest country in mainland Africa, only about 50 km wide at its widest point.",
+      "The capital city of The Gambia is Banjul."
+    ]
+  },
+  {
+    "country": "Botswana",
+    "population": 2720000,
+    "facts": [
+      "Botswana produces the most diamonds in the world by value.",
+      "The capital city of Botswana is Gaborone."
+    ]
+  },
+  {
+    "country": "Gabon",
+    "population": 2520000,
+    "facts": [
+      "Gabon is home to about 80% of Africa's gorillas.",
+      "The capital city of Gabon is Libreville."
+    ]
+  },
+  {
+    "country": "Lesotho",
+    "population": 2350000,
+    "facts": [
+      "Lesotho is a country completely surrounded by South Africa, with no borders on the sea.",
+      "The capital city of Lesotho is Maseru."
+    ]
+  },
+  {
+    "country": "Slovenia",
+    "population": 2110000,
+    "facts": [
+      "Slovenia has over 10,000 caves, and you can even take a train inside one of them.",
+      "The capital city of Slovenia is Ljubljana."
+    ]
+  },
+  {
+    "country": "Latvia",
+    "population": 1820000,
+    "facts": [
+      "Latvia has one of the fastest internet connections in the world.",
+      "The capital city of Latvia is Riga."
+    ]
+  },
+  {
+    "country": "North Macedonia",
+    "population": 2080000,
+    "facts": [
+      "North Macedonia is home to Lake Ohrid, one of the oldest and deepest lakes in Europe.",
+      "The capital city of North Macedonia is Skopje."
+    ]
+  },
+  {
+    "country": "Kosovo",
+    "population": 1750000,
+    "facts": [
+      "Kosovo has the youngest population in Europe, with an average age of about 25.",
+      "The capital city of Kosovo is Pristina."
+    ]
+  },
+  {
+    "country": "Guinea-Bissau",
+    "population": 2220000,
+    "facts": [
+      "The capital city of Guinea-Bissau is Bissau.",
+      "In Guinea-Bissau, the official language is Portuguese, but almost everyone uses a language called Kriol to talk to friends."
+    ]
+  },
+  {
+    "country": "Equatorial Guinea",
+    "population": 1780000,
+    "facts": [
+      "Equatorial Guinea is the only country in Africa where Spanish is the official language.",
+      "The capital city of Equatorial Guinea is Malabo."
+    ]
+  },
+  {
+    "country": "Bahrain",
+    "population": 1500000,
+    "facts": [
+      "Bahrain is an island nation made up of 33 small islands.",
+      "The capital city of Bahrain is Manama."
+    ]
+  },
+  {
+    "country": "Trinidad and Tobago",
+    "population": 1530000,
+    "facts": [
+      "Trinidad and Tobago is the birthplace of steelpan drums, the only musical instrument invented in the 20th century.",
+      "The capital city of Trinidad and Tobago is Port of Spain."
+    ]
+  },
+  {
+    "country": "Estonia",
+    "population": 1320000,
+    "facts": [
+      "Estonia is one of the greenest countries in Europe, with 52% of its land covered in forest.",
+      "The capital city of Estonia is Tallinn."
+    ]
+  },
+  {
+    "country": "Timor-Leste",
+    "population": 1380000,
+    "facts": [
+      "Timor-Leste is one of the youngest countries in the world, becoming independent in 2002.",
+      "The capital city of Timor-Leste is Dili."
+    ]
+  },
+  {
+    "country": "Mauritius",
+    "population": 1300000,
+    "facts": [
+      "Mauritius is the only place in the world where you can find the now-extinct dodo bird in history books.",
+      "The capital city of Mauritius is Port Louis."
+    ]
+  },
+  {
+    "country": "Cyprus",
+    "population": 1270000,
+    "facts": [
+      "Cyprus is known as the island of Aphrodite, the Greek goddess of love, who was said to be born there.",
+      "The capital city of Cyprus is Nicosia."
+    ]
+  },
+  {
+    "country": "Eswatini",
+    "population": 1230000,
+    "facts": [
+      "Eswatini is one of the last remaining absolute monarchies in the world.",
+      "The capital city of Eswatini is Mbabane."
+    ]
+  },
+  {
+    "country": "Djibouti",
+    "population": 1150000,
+    "facts": [
+      "Djibouti is home to Lake Assal, the lowest point in Africa and the saltiest lake outside Antarctica.",
+      "The capital city of Djibouti is Djibouti."
+    ]
+  },
+  {
+    "country": "Fiji",
+    "population": 940000,
+    "facts": [
+      "Fiji has over 330 islands, but only about 100 of them are inhabited.",
+      "The capital city of Fiji is Suva."
+    ]
+  },
+  {
+    "country": "Comoros",
+    "population": 870000,
+    "facts": [
+      "Comoros is known as the 'Perfume Islands' because it grows many flowers used to make perfume.",
+      "The capital city of Comoros is Moroni."
+    ]
+  },
+  {
+    "country": "Guyana",
+    "population": 820000,
+    "facts": [
+      "Guyana is the only country in South America where English is the official language.",
+      "The Kaieteur Falls in Guyana is one of the tallest single-drop waterfalls in the world."
+    ]
+  },
+  {
+    "country": "Bhutan",
+    "population": 795000,
+    "facts": [
+      "Bhutan measures its success by 'Gross National Happiness' instead of just money.",
+      "The capital city of Bhutan is Thimphu."
+    ]
+  },
+  {
+    "country": "Solomon Islands",
+    "population": 775000,
+    "facts": [
+      "The Solomon Islands were named after King Solomon because it was believed he had mines of gold there.",
+      "The capital city of the Solomon Islands is Honiara."
+    ]
+  },
+  {
+    "country": "Luxembourg",
+    "population": 665000,
+    "facts": [
+      "Luxembourg is one of the smallest countries in Europe but one of the richest in the world.",
+      "The capital city of Luxembourg is Luxembourg."
+    ]
+  },
+  {
+    "country": "Montenegro",
+    "population": 625000,
+    "facts": [
+      "Montenegro means 'Black Mountain' in the local language.",
+      "The capital city of Montenegro is Podgorica."
+    ]
+  },
+  {
+    "country": "Suriname",
+    "population": 630000,
+    "facts": [
+      "Suriname is the smallest country in South America.",
+      "The capital city of Suriname is Paramaribo."
+    ]
+  },
+  {
+    "country": "Cabo Verde",
+    "population": 605000,
+    "facts": [
+      "Cabo Verde is a group of islands off the coast of West Africa.",
+      "The capital city of Cabo Verde is Praia."
+    ]
+  },
+  {
+    "country": "Malta",
+    "population": 540000,
+    "facts": [
+      "Malta is one of the smallest countries in the world but has the most historic sites per square kilometer.",
+      "The capital city of Malta is Valletta."
+    ]
+  },
+  {
+    "country": "Maldives",
+    "population": 525000,
+    "facts": [
+      "The Maldives is the lowest and flattest country in the world, with an average ground level of just 1.5 meters.",
+      "The capital city of the Maldives is Male."
+    ]
+  },
+  {
+    "country": "Brunei",
+    "population": 460000,
+    "facts": [
+      "Brunei is one of the few remaining countries in the world ruled by an absolute monarch, called a Sultan.",
+      "The capital city of Brunei is Bandar Seri Begawan."
+    ]
+  },
+  {
+    "country": "Belize",
+    "population": 415000,
+    "facts": [
+      "Belize is home to the Great Blue Hole, a giant underwater sinkhole that is visible from space.",
+      "The capital city of Belize is Belmopan."
+    ]
+  },
+  {
+    "country": "Bahamas",
+    "population": 412000,
+    "facts": [
+      "The Bahamas has over 700 islands, but only about 30 of them are inhabited.",
+      "The capital city of the Bahamas is Nassau."
+    ]
+  },
+  {
+    "country": "Iceland",
+    "population": 380000,
+    "facts": [
+      "Iceland has no mosquitoes at all, not even one!",
+      "Icelanders drink more Coca-Cola per person than any other country in the world."
+    ]
+  },
+  {
+    "country": "Vanuatu",
+    "population": 345000,
+    "facts": [
+      "Vanuatu is the birthplace of bungee jumping! Men fasten vines to their ankles and jump from tall wooden platforms.",
+      "The capital city of Vanuatu is Port Vila."
+    ]
+  },
+  {
+    "country": "Barbados",
+    "population": 282000,
+    "facts": [
+      "Barbados is the birthplace of rum, which was first made there in the 1600s.",
+      "The capital city of Barbados is Bridgetown."
+    ]
+  },
+  {
+    "country": "French Polynesia",
+    "population": 310000,
+    "facts": [
+      "French Polynesia includes over 100 islands, the most famous being Tahiti and Bora Bora.",
+      "The capital city of French Polynesia is Papeete."
+    ]
+  },
+  {
+    "country": "New Caledonia",
+    "population": 295000,
+    "facts": [
+      "New Caledonia has one of the largest coral reef systems in the world, second only to Australia's Great Barrier Reef.",
+      "The capital city of New Caledonia is Noumea."
+    ]
+  },
+  {
+    "country": "Samoa",
+    "population": 230000,
+    "facts": [
+      "Samoa has a third gender called fa'afafines, and people who are fa'afafine are fully accepted in society.",
+      "The capital city of Samoa is Apia."
+    ]
+  },
+  {
+    "country": "Saint Lucia",
+    "population": 180000,
+    "facts": [
+      "Saint Lucia is the only country in the world named after a woman, Saint Lucy.",
+      "The capital city of Saint Lucia is Castries."
+    ]
+  },
+  {
+    "country": "Guam",
+    "population": 175000,
+    "facts": [
+      "Guam is a tiny island territory of the United States in the Pacific Ocean.",
+      "The capital city of Guam is Hagatna."
+    ]
+  },
+  {
+    "country": "Kiribati",
+    "population": 135000,
+    "facts": [
+      "Kiribati is the only country in the world that is located in all four hemispheres at once.",
+      "The capital city of Kiribati is South Tarawa."
+    ]
+  },
+  {
+    "country": "Seychelles",
+    "population": 110000,
+    "facts": [
+      "Seychelles has some of the most beautiful beaches in the world, with pink sand on some islands.",
+      "The capital city of Seychelles is Victoria."
+    ]
+  },
+  {
+    "country": "Grenada",
+    "population": 128000,
+    "facts": [
+      "Grenada is known as the 'Island of Spice' because it grows lots of nutmeg and mace.",
+      "The capital city of Grenada is Saint George's."
+    ]
+  },
+  {
+    "country": "Tonga",
+    "population": 108000,
+    "facts": [
+      "Tonga is the only Pacific island nation that was never colonized by European powers.",
+      "The capital city of Tonga is Nuku'alofa."
+    ]
+  },
+  {
+    "country": "Micronesia",
+    "population": 116000,
+    "facts": [
+      "Micronesia is made up of over 600 islands in the Pacific Ocean.",
+      "The capital city of Micronesia is Palikir."
+    ]
+  },
+  {
+    "country": "Antigua and Barbuda",
+    "population": 95000,
+    "facts": [
+      "Antigua means 'ancient' in Spanish, and Barbuda means 'bearded'.",
+      "The capital city of Antigua and Barbuda is Saint John's."
+    ]
+  },
+  {
+    "country": "Andorra",
+    "population": 81000,
+    "facts": [
+      "Andorra is a tiny country between France and Spain.",
+      "The capital city of Andorra is Andorra la Vella."
+    ]
+  },
+  {
+    "country": "Dominica",
+    "population": 73000,
+    "facts": [
+      "Dominica is home to the Boiling Lake, the second-largest hot spring in the world.",
+      "The capital city of Dominica is Roseau."
+    ]
+  },
+  {
+    "country": "Cayman Islands",
+    "population": 70000,
+    "facts": [
+      "The Cayman Islands are famous for having more registered businesses than people.",
+      "The capital city of the Cayman Islands is George Town."
+    ]
+  },
+  {
+    "country": "Bermuda",
+    "population": 64000,
+    "facts": [
+      "Bermuda is famous for the Bermuda Triangle, an area where ships and planes have mysteriously disappeared.",
+      "The capital city of Bermuda is Hamilton."
+    ]
+  },
+  {
+    "country": "Greenland",
+    "population": 56000,
+    "facts": [
+      "Greenland is the world's largest island that is not a continent.",
+      "The capital city of Greenland is Nuuk."
+    ]
+  },
+  {
+    "country": "Faroe Islands",
+    "population": 55000,
+    "facts": [
+      "The Faroe Islands have more sheep than people.",
+      "The capital city of the Faroe Islands is Torshavn."
+    ]
+  },
+  {
+    "country": "Saint Kitts and Nevis",
+    "population": 48000,
+    "facts": [
+      "Saint Kitts and Nevis is the smallest country in the Americas by both area and population.",
+      "The capital city of Saint Kitts and Nevis is Basseterre."
+    ]
+  },
+  {
+    "country": "Monaco",
+    "population": 36000,
+    "facts": [
+      "Monaco is the second smallest country in the world but has the most millionaires per person.",
+      "The capital city of Monaco is Monaco."
+    ]
+  },
+  {
+    "country": "Liechtenstein",
+    "population": 40000,
+    "facts": [
+      "Liechtenstein is one of the smallest countries in the world and is located between Switzerland and Austria.",
+      "The capital city of Liechtenstein is Vaduz."
+    ]
+  },
+  {
+    "country": "San Marino",
+    "population": 34000,
+    "facts": [
+      "San Marino is one of the oldest republics in the world, founded in 301 AD.",
+      "The capital city of San Marino is San Marino."
+    ]
+  },
+  {
+    "country": "Gibraltar",
+    "population": 33000,
+    "facts": [
+      "Gibraltar is a British territory at the southern tip of Spain, famous for its Rock of Gibraltar.",
+      "The capital city of Gibraltar is Gibraltar."
+    ]
+  },
+  {
+    "country": "British Virgin Islands",
+    "population": 32000,
+    "facts": [
+      "The British Virgin Islands are a group of about 60 islands in the Caribbean.",
+      "The capital city of the British Virgin Islands is Road Town."
+    ]
+  },
+  {
     "country": "Palau",
     "population": 18000,
     "facts": [
       "The capital city of Palau is Ngerulmud.",
-      "In Palau, people use 2 official languages, Palauan and English, but some islands also use Japanese!"
+      "In Palau, people use 2 official languages, Palauan and English, but some islands also use Japanese."
+    ]
+  },
+  {
+    "country": "Cook Islands",
+    "population": 17000,
+    "facts": [
+      "The Cook Islands are named after the British explorer Captain James Cook.",
+      "The capital city of the Cook Islands is Avarua."
+    ]
+  },
+  {
+    "country": "Anguilla",
+    "population": 16000,
+    "facts": [
+      "Anguilla is a British island territory known for its beautiful white sand beaches.",
+      "The capital city of Anguilla is The Valley."
     ]
   },
   {
@@ -74,19 +1624,67 @@
     ]
   },
   {
-    "country": "Yemen",
-    "population": 42961700,
+    "country": "Nauru",
+    "population": 12800,
     "facts": [
-      "The capital city of Yemen is Sana'a.",
-      "In Yemen, the official language is Arabic, though many people use different regional versions of it."
+      "Nauru is a tiny island country in the Pacific Ocean.",
+      "Nauru does not have an official capital city."
     ]
   },
   {
-    "country": "Guinea-Bissau",
-    "population": 2220000,
+    "country": "Saint Barthelemy",
+    "population": 11000,
     "facts": [
-      "The capital city of Guinea-Bissau is Bissau.",
-      "In Guinea-Bissau, the official language is Portuguese, but almost everyone uses a language called Kriol to talk to their friends."
+      "Saint Barthelemy is a French island in the Caribbean nicknamed 'St. Barts'.",
+      "The capital city of Saint Barthelemy is Gustavia."
+    ]
+  },
+  {
+    "country": "Saint Helena",
+    "population": 5400,
+    "facts": [
+      "Saint Helena is a remote volcanic island in the South Atlantic, famous as the place where Napoleon was exiled.",
+      "The capital city of Saint Helena is Jamestown."
+    ]
+  },
+  {
+    "country": "Montserrat",
+    "population": 4400,
+    "facts": [
+      "Montserrat is a Caribbean island with an active volcano that has destroyed its capital city twice.",
+      "The capital city of Montserrat is Plymouth (abandoned) and Brades."
+    ]
+  },
+  {
+    "country": "Falkland Islands",
+    "population": 3800,
+    "facts": [
+      "The Falkland Islands have about half a million sheep but only about 3,000 people.",
+      "The capital city of the Falkland Islands is Stanley."
+    ]
+  },
+  {
+    "country": "Niue",
+    "population": 1900,
+    "facts": [
+      "Niue is the world's first and only 'WIFI nation,' with free internet access across the whole country.",
+      "The capital city of Niue is Alofi."
+    ]
+  },
+  {
+    "country": "Tokelau",
+    "population": 1900,
+    "facts": [
+      "Tokelau is a territory of New Zealand made up of three small atolls in the Pacific.",
+      "Tokelau runs almost entirely on solar power."
+    ]
+  },
+  {
+    "country": "Vatican City",
+    "population": 500,
+    "facts": [
+      "Vatican City is the smallest country in the world, smaller than many city parks.",
+      "Vatican City has the highest amount of art per person in the world."
     ]
   }
 ]
