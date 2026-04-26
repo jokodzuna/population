@@ -23,6 +23,7 @@ const cheatState = {
 
 const CHEAT_STORAGE_KEY = 'cheatLastActiveTime';
 const CHEAT_ACTIVE_KEY = 'cheatIsTurnActive';
+const CHEAT_DEPARTURE_KEY = 'cheatDepartureTime';
 const CHEAT_THRESHOLD = 5000;
 let heartbeatInterval = null;
 
@@ -65,20 +66,26 @@ function stopHeartbeat() {
   }
   localStorage.removeItem(CHEAT_ACTIVE_KEY);
   localStorage.removeItem(CHEAT_STORAGE_KEY);
+  localStorage.removeItem(CHEAT_DEPARTURE_KEY);
 }
 
 function saveCheatTimestamp() {
   if (localStorage.getItem(CHEAT_ACTIVE_KEY) === 'true') {
-    localStorage.setItem(CHEAT_STORAGE_KEY, String(Date.now()));
+    // Write to departure key (never overwritten by heartbeat)
+    localStorage.setItem(CHEAT_DEPARTURE_KEY, String(Date.now()));
   }
 }
 
 function checkCheatGap() {
   const isActive = localStorage.getItem(CHEAT_ACTIVE_KEY);
-  const lastTime = parseInt(localStorage.getItem(CHEAT_STORAGE_KEY), 10);
-  if (isActive === 'true' && lastTime) {
-    const gap = Date.now() - lastTime;
-    console.log(`[CheatDetection] Gap detected: ${(gap / 1000).toFixed(2)}s`);
+  const departureTime = parseInt(localStorage.getItem(CHEAT_DEPARTURE_KEY), 10);
+  const heartbeatTime = parseInt(localStorage.getItem(CHEAT_STORAGE_KEY), 10);
+  // Consume departure key so it doesn't re-trigger
+  localStorage.removeItem(CHEAT_DEPARTURE_KEY);
+  const referenceTime = departureTime || heartbeatTime;
+  if (isActive === 'true' && referenceTime) {
+    const gap = Date.now() - referenceTime;
+    console.log(`[CheatDetection] Gap: ${(gap / 1000).toFixed(2)}s (via ${departureTime ? 'departure' : 'heartbeat'})`);
     if (gap > CHEAT_THRESHOLD) {
       cheatState.flagged = true;
       const activeScreen = document.querySelector('.screen.active');
@@ -294,6 +301,7 @@ function showGuessScreen() {
   $('guess-input').value = '';
   showScreen('screen-guess');
   $('guess-input').focus();
+  checkCheatGap();
   startHeartbeat();
   saveState('screen-guess');
 }
