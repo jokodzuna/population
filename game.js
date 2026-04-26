@@ -10,6 +10,8 @@ const gameState = {
   currentPlayerTurn: 0
 };
 
+const STORAGE_KEY = 'gameState';
+
 function $(id) { return document.getElementById(id); }
 
 function showScreen(id) {
@@ -35,6 +37,52 @@ function getAvatarColor(index) {
 
 function getInitials(name) {
   return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+}
+
+function saveState(screenId) {
+  const save = {
+    numPlayers: gameState.numPlayers,
+    targetScore: gameState.targetScore,
+    players: gameState.players,
+    usedCountryIndices: gameState.usedCountryIndices,
+    currentRound: gameState.currentRound,
+    currentPlayerTurn: gameState.currentPlayerTurn,
+    currentCountryName: gameState.currentCountry ? gameState.currentCountry.country : null,
+    screen: screenId
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(save));
+}
+
+function clearState() {
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+function restoreState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return false;
+  try {
+    const saved = JSON.parse(raw);
+    gameState.numPlayers = saved.numPlayers;
+    gameState.targetScore = saved.targetScore;
+    gameState.players = saved.players;
+    gameState.usedCountryIndices = saved.usedCountryIndices;
+    gameState.currentRound = saved.currentRound;
+    gameState.currentPlayerTurn = saved.currentPlayerTurn;
+    if (saved.currentCountryName && populationData.length > 0) {
+      gameState.currentCountry = populationData.find(c => c.country === saved.currentCountryName) || null;
+    }
+    return saved.screen || false;
+  } catch (e) {
+    clearState();
+    return false;
+  }
+}
+
+function syncSegmented(selectorId, value) {
+  const container = $(selectorId);
+  container.querySelectorAll('button').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.value, 10) === value);
+  });
 }
 
 function renderLeaderboard(containerId) {
@@ -99,6 +147,7 @@ function showPassScreen() {
   const p = gameState.players[gameState.currentPlayerTurn];
   $('pass-player-name').textContent = `Ready ${p.name}?`;
   showScreen('screen-pass');
+  saveState('screen-pass');
 }
 
 function getHintInterval(pop) {
@@ -128,28 +177,20 @@ function showGuessScreen() {
   $('guess-input').value = '';
   showScreen('screen-guess');
   $('guess-input').focus();
+  saveState('screen-guess');
 }
 
-function finishRound() {
+function renderResultsScreen() {
   const actual = gameState.currentCountry.population;
-  let bestDiff = Infinity;
   let winnerIdx = -1;
-
+  let bestDiff = Infinity;
   gameState.players.forEach((p, i) => {
-    const diff = Math.abs(p.currentGuess - actual);
-    p.lastDiff = diff;
-    p.lastGuess = p.currentGuess;
-    if (diff < bestDiff) {
-      bestDiff = diff;
+    if (p.lastDiff < bestDiff) {
+      bestDiff = p.lastDiff;
       winnerIdx = i;
     }
   });
 
-  if (winnerIdx >= 0) {
-    gameState.players[winnerIdx].score += 1;
-  }
-
-  // Results
   $('results-country').textContent = gameState.currentCountry.country;
   $('results-actual').textContent = formatNumber(actual);
 
@@ -182,6 +223,29 @@ function finishRound() {
   showScreen('screen-results');
 }
 
+function finishRound() {
+  const actual = gameState.currentCountry.population;
+  let bestDiff = Infinity;
+  let winnerIdx = -1;
+
+  gameState.players.forEach((p, i) => {
+    const diff = Math.abs(p.currentGuess - actual);
+    p.lastDiff = diff;
+    p.lastGuess = p.currentGuess;
+    if (diff < bestDiff) {
+      bestDiff = diff;
+      winnerIdx = i;
+    }
+  });
+
+  if (winnerIdx >= 0) {
+    gameState.players[winnerIdx].score += 1;
+  }
+
+  renderResultsScreen();
+  saveState('screen-results');
+}
+
 function checkWinner() {
   const winner = gameState.players.find(p => p.score >= gameState.targetScore);
   if (!winner) return false;
@@ -190,6 +254,7 @@ function checkWinner() {
   $('winner-score').textContent = `Final Score: ${winner.score}`;
   renderLeaderboard('final-leaderboard');
   showScreen('screen-winner');
+  clearState();
   return true;
 }
 
@@ -222,6 +287,7 @@ function initGame() {
   gameState.usedCountryIndices = [];
   renderLeaderboard('leaderboard-ready');
   showScreen('screen-ready');
+  saveState('screen-ready');
 }
 
 async function loadData() {
@@ -234,11 +300,28 @@ async function loadData() {
   }
 }
 
-function init() {
-  loadData();
+async function init() {
+  await loadData();
 
   setupSegmented('num-players-selector', 'numPlayers', buildNameInputs);
   setupSegmented('target-score-selector', 'targetScore');
+  buildNameInputs();
+
+  const savedScreen = restoreState();
+  if (savedScreen) {
+    syncSegmented('num-players-selector', gameState.numPlayers);
+    syncSegmented('target-score-selector', gameState.targetScore);
+    if (savedScreen === 'screen-ready') {
+      renderLeaderboard('leaderboard-ready');
+      showScreen('screen-ready');
+    } else if (savedScreen === 'screen-pass') {
+      showPassScreen();
+    } else if (savedScreen === 'screen-guess') {
+      showGuessScreen();
+    } else if (savedScreen === 'screen-results') {
+      renderResultsScreen();
+    }
+  }
 
   $('btn-setup-next').addEventListener('click', () => {
     buildNameInputs();
@@ -296,6 +379,7 @@ function init() {
   });
 
   $('btn-play-again').addEventListener('click', () => {
+    clearState();
     showScreen('screen-setup');
   });
 }
