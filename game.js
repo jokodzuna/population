@@ -23,6 +23,9 @@ const cheatState = {
   graceTimer: null
 };
 
+const CHEAT_BACK_THRESHOLD = 5000;
+let heartbeatInterval = null;
+
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   $(id).classList.add('active');
@@ -46,7 +49,44 @@ function hideCheatOverlay() {
   $('cheat-modal').classList.remove('active');
 }
 
+function startHeartbeat() {
+  if (heartbeatInterval) clearInterval(heartbeatInterval);
+  sessionStorage.setItem('isTurnActive', 'true');
+  sessionStorage.setItem('lastActiveTime', String(Date.now()));
+  heartbeatInterval = setInterval(() => {
+    const activeScreen = document.querySelector('.screen.active');
+    if (activeScreen && activeScreen.id === 'screen-guess') {
+      sessionStorage.setItem('lastActiveTime', String(Date.now()));
+    }
+  }, 1000);
+}
+
+function stopHeartbeat() {
+  if (heartbeatInterval) {
+    clearInterval(heartbeatInterval);
+    heartbeatInterval = null;
+  }
+  sessionStorage.removeItem('isTurnActive');
+  sessionStorage.removeItem('lastActiveTime');
+}
+
+function checkCheatGap() {
+  const isActive = sessionStorage.getItem('isTurnActive');
+  const lastTime = parseInt(sessionStorage.getItem('lastActiveTime'), 10);
+  if (isActive === 'true' && lastTime) {
+    const gap = Date.now() - lastTime;
+    if (gap > CHEAT_BACK_THRESHOLD) {
+      cheatState.flagged = true;
+      const activeScreen = document.querySelector('.screen.active');
+      if (activeScreen && activeScreen.id === 'screen-guess') {
+        showCheatOverlay();
+      }
+    }
+  }
+}
+
 function skipTurn() {
+  stopHeartbeat();
   const p = gameState.players[gameState.currentPlayerTurn];
   p.currentGuess = -1;
   p.lastDiff = Infinity;
@@ -251,6 +291,7 @@ function showGuessScreen() {
   $('guess-input').value = '';
   showScreen('screen-guess');
   $('guess-input').focus();
+  startHeartbeat();
   saveState('screen-guess');
 }
 
@@ -307,6 +348,7 @@ function renderResultsScreen() {
 }
 
 function finishRound() {
+  stopHeartbeat();
   const actual = gameState.currentCountry.population;
 
   gameState.players.forEach((p, i) => {
@@ -332,6 +374,7 @@ function finishRound() {
 function checkWinner() {
   const winner = gameState.players.find(p => p.score >= gameState.targetScore);
   if (!winner) return false;
+  stopHeartbeat();
 
   $('winner-name').textContent = `${winner.name} Wins!`;
   $('winner-score').textContent = `Final Score: ${winner.score}`;
@@ -342,6 +385,7 @@ function checkWinner() {
 }
 
 function nextRound() {
+  stopHeartbeat();
   gameState.currentRound += 1;
   gameState.currentPlayerTurn = 0;
   gameState.players.forEach(p => { p.currentGuess = 0; p.lastDiff = 0; p.lastGuess = 0; });
@@ -356,6 +400,7 @@ function nextRound() {
 }
 
 function initGame() {
+  stopHeartbeat();
   cheatState.flagged = false;
   cheatState.hiddenTime = null;
   if (cheatState.graceTimer) {
@@ -490,6 +535,7 @@ async function init() {
   });
 
   $('btn-play-again').addEventListener('click', () => {
+    stopHeartbeat();
     clearState();
     showScreen('screen-setup');
   });
@@ -517,30 +563,20 @@ async function init() {
 
   $('btn-exit-confirm').addEventListener('click', () => {
     hideExitModal();
+    stopHeartbeat();
     clearState();
     showScreen('screen-setup');
   });
 
   // Cheat Detection: Page Visibility API
   document.addEventListener('visibilitychange', () => {
-    const activeScreen = document.querySelector('.screen.active');
-    const isGuessScreen = activeScreen && activeScreen.id === 'screen-guess';
-
-    if (document.hidden && isGuessScreen && !cheatState.flagged) {
-      cheatState.hiddenTime = Date.now();
-      cheatState.graceTimer = setTimeout(() => {
-        cheatState.flagged = true;
-      }, 3000);
-    } else if (!document.hidden) {
-      if (cheatState.graceTimer) {
-        clearTimeout(cheatState.graceTimer);
-        cheatState.graceTimer = null;
-      }
-      if (cheatState.flagged && isGuessScreen) {
-        showCheatOverlay();
-      }
-      cheatState.hiddenTime = null;
+    if (!document.hidden) {
+      checkCheatGap();
     }
+  });
+
+  window.addEventListener('pageshow', () => {
+    checkCheatGap();
   });
 
   $('btn-cheat-skip').addEventListener('click', () => {
