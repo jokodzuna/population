@@ -1,4 +1,5 @@
 let populationData = [];
+let factsData = [];
 
 const gameState = {
   numPlayers: 2,
@@ -239,6 +240,10 @@ function renderResultsScreen() {
   $('results-country').textContent = gameState.currentCountry.country;
   $('results-actual').textContent = formatNumber(actual);
 
+  const fact = getRandomFact(gameState.currentCountry.country);
+  $('results-fact').textContent = fact ? `Fun Fact: ${fact}` : '';
+  $('results-fact').style.display = fact ? 'block' : 'none';
+
   const sortedByDiff = [...gameState.players].map((p, i) => ({ p, i, pts: roundPoints[i] }))
     .sort((a, b) => a.p.lastDiff - b.p.lastDiff);
   const list = $('results-list');
@@ -343,8 +348,24 @@ async function loadData() {
   }
 }
 
+async function loadFacts() {
+  try {
+    const res = await fetch('facts.json');
+    factsData = await res.json();
+  } catch (e) {
+    factsData = [];
+  }
+}
+
+function getRandomFact(countryName) {
+  const entry = factsData.find(f => f.country === countryName);
+  if (!entry || !entry.facts || entry.facts.length === 0) return null;
+  const idx = Math.floor(Math.random() * entry.facts.length);
+  return entry.facts[idx];
+}
+
 async function init() {
-  await loadData();
+  await Promise.all([loadData(), loadFacts()]);
 
   setupSegmented('num-players-selector', 'numPlayers', buildNameInputs);
   setupSegmented('target-score-selector', 'targetScore');

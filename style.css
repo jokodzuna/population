@@ -267,6 +267,18 @@ input[type="text"]:focus {
   margin-top: 4px;
 }
 
+.fun-fact {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(56, 189, 248, 0.12);
+  border-radius: 10px;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
 .country-reveal .label {
   color: var(--text-muted);
   font-size: 0.85rem;

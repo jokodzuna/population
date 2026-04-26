@@ -1,0 +1,92 @@
+[
+  {
+    "country": "India",
+    "population": 1476625576,
+    "facts": [
+      "India has a floating post office! It is on a boat in a lake in Dal, Srinagar.",
+      "The game of Snakes and Ladders started in India a long time ago to teach kids about good and bad.",
+      "India is the first place where people found and mined diamonds in the ground."
+    ]
+  },
+  {
+    "country": "China",
+    "population": 1412914089,
+    "facts": [
+      "China has the longest bridge in the world. It is called the Danyang-Kunshan Grand Bridge and is 102 miles (164 kilometers) long!",
+      "In China, every year has an animal name, like the Year of the Tiger or Year of the Dragon.",
+      "China built a giant solar power plant shaped like a giant Panda bear that you can see from space!"
+    ]
+  },
+  {
+    "country": "South Sudan",
+    "population": 11350000,
+    "facts": [
+      "The capital city of South Sudan is Juba.",
+      "In South Sudan, people speak 2 main official languages (English and Arabic), but there are over 60 other local languages used by different groups!"
+    ]
+  },
+  {
+    "country": "Oman",
+    "population": 4750000,
+    "facts": [
+      "The capital city of Oman is Muscat.",
+      "In Oman, the main official language is Arabic, but people also use 3 or 4 other common languages like English and Baluchi."
+    ]
+  },
+  {
+    "country": "Sierra Leone",
+    "population": 8950000,
+    "facts": [
+      "The capital city of Sierra Leone is Freetown.",
+      "In Sierra Leone, English is the official language, but people use about 25 different languages to talk to each other every day!"
+    ]
+  },
+  {
+    "country": "Liberia",
+    "population": 5650000,
+    "facts": [
+      "The capital city of Liberia is Monrovia.",
+      "In Liberia, the official language is English, but there are over 20 other indigenous languages used across the country."
+    ]
+  },
+  {
+    "country": "Central African Republic",
+    "population": 5950000,
+    "facts": [
+      "The capital city of the Central African Republic is Bangui.",
+      "In this country, people use 2 official languages: French and Sango."
+    ]
+  },
+  {
+    "country": "Palau",
+    "population": 18000,
+    "facts": [
+      "The capital city of Palau is Ngerulmud.",
+      "In Palau, people use 2 official languages, Palauan and English, but some islands also use Japanese!"
+    ]
+  },
+  {
+    "country": "Tuvalu",
+    "population": 11500,
+    "facts": [
+      "The capital city of Tuvalu is Funafuti.",
+      "In Tuvalu, people use 2 main languages: Tuvaluan and English."
+    ]
+  },
+  {
+    "country": "Yemen",
+    "population": 42961700,
+    "facts": [
+      "The capital city of Yemen is Sana'a.",
+      "In Yemen, the official language is Arabic, though many people use different regional versions of it."
+    ]
+  },
+  {
+    "country": "Guinea-Bissau",
+    "population": 2220000,
+    "facts": [
+      "The capital city of Guinea-Bissau is Bissau.",
+      "In Guinea-Bissau, the official language is Portuguese, but almost everyone uses a language called Kriol to talk to their friends."
+    ]
+  }
+]
