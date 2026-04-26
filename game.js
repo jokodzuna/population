@@ -18,12 +18,12 @@ function $(id) { return document.getElementById(id); }
 let exitReturnScreen = null;
 
 const cheatState = {
-  flagged: false,
-  hiddenTime: null,
-  graceTimer: null
+  flagged: false
 };
 
-const CHEAT_BACK_THRESHOLD = 5000;
+const CHEAT_STORAGE_KEY = 'cheatLastActiveTime';
+const CHEAT_ACTIVE_KEY = 'cheatIsTurnActive';
+const CHEAT_THRESHOLD = 5000;
 let heartbeatInterval = null;
 
 function showScreen(id) {
@@ -51,14 +51,11 @@ function hideCheatOverlay() {
 
 function startHeartbeat() {
   if (heartbeatInterval) clearInterval(heartbeatInterval);
-  sessionStorage.setItem('isTurnActive', 'true');
-  sessionStorage.setItem('lastActiveTime', String(Date.now()));
+  localStorage.setItem(CHEAT_ACTIVE_KEY, 'true');
+  localStorage.setItem(CHEAT_STORAGE_KEY, String(Date.now()));
   heartbeatInterval = setInterval(() => {
-    const activeScreen = document.querySelector('.screen.active');
-    if (activeScreen && activeScreen.id === 'screen-guess') {
-      sessionStorage.setItem('lastActiveTime', String(Date.now()));
-    }
-  }, 1000);
+    localStorage.setItem(CHEAT_STORAGE_KEY, String(Date.now()));
+  }, 500);
 }
 
 function stopHeartbeat() {
@@ -66,23 +63,23 @@ function stopHeartbeat() {
     clearInterval(heartbeatInterval);
     heartbeatInterval = null;
   }
-  sessionStorage.removeItem('isTurnActive');
-  sessionStorage.removeItem('lastActiveTime');
+  localStorage.removeItem(CHEAT_ACTIVE_KEY);
+  localStorage.removeItem(CHEAT_STORAGE_KEY);
 }
 
 function saveCheatTimestamp() {
-  const isActive = sessionStorage.getItem('isTurnActive');
-  if (isActive === 'true') {
-    sessionStorage.setItem('lastActiveTime', String(Date.now()));
+  if (localStorage.getItem(CHEAT_ACTIVE_KEY) === 'true') {
+    localStorage.setItem(CHEAT_STORAGE_KEY, String(Date.now()));
   }
 }
 
 function checkCheatGap() {
-  const isActive = sessionStorage.getItem('isTurnActive');
-  const lastTime = parseInt(sessionStorage.getItem('lastActiveTime'), 10);
+  const isActive = localStorage.getItem(CHEAT_ACTIVE_KEY);
+  const lastTime = parseInt(localStorage.getItem(CHEAT_STORAGE_KEY), 10);
   if (isActive === 'true' && lastTime) {
     const gap = Date.now() - lastTime;
-    if (gap > CHEAT_BACK_THRESHOLD) {
+    console.log(`[CheatDetection] Gap detected: ${(gap / 1000).toFixed(2)}s`);
+    if (gap > CHEAT_THRESHOLD) {
       cheatState.flagged = true;
       const activeScreen = document.querySelector('.screen.active');
       if (activeScreen && activeScreen.id === 'screen-guess') {
@@ -99,7 +96,6 @@ function skipTurn() {
   p.lastDiff = Infinity;
   p.lastGuess = 0;
   cheatState.flagged = false;
-  cheatState.hiddenTime = null;
   hideCheatOverlay();
   gameState.currentPlayerTurn++;
   if (gameState.currentPlayerTurn < gameState.numPlayers) {
@@ -397,11 +393,6 @@ function nextRound() {
   gameState.currentPlayerTurn = 0;
   gameState.players.forEach(p => { p.currentGuess = 0; p.lastDiff = 0; p.lastGuess = 0; });
   cheatState.flagged = false;
-  cheatState.hiddenTime = null;
-  if (cheatState.graceTimer) {
-    clearTimeout(cheatState.graceTimer);
-    cheatState.graceTimer = null;
-  }
   pickRandomCountry();
   showPassScreen();
 }
@@ -409,11 +400,6 @@ function nextRound() {
 function initGame() {
   stopHeartbeat();
   cheatState.flagged = false;
-  cheatState.hiddenTime = null;
-  if (cheatState.graceTimer) {
-    clearTimeout(cheatState.graceTimer);
-    cheatState.graceTimer = null;
-  }
   gameState.players = [];
   for (let i = 0; i < gameState.numPlayers; i++) {
     const nameInput = $(`name-${i}`);
@@ -575,40 +561,20 @@ async function init() {
     showScreen('screen-setup');
   });
 
-  // Cheat Detection: Page Visibility API (window switching / tab switching)
+  // Cheat Detection: unified heartbeat + localStorage
   document.addEventListener('visibilitychange', () => {
-    const activeScreen = document.querySelector('.screen.active');
-    const isGuessScreen = activeScreen && activeScreen.id === 'screen-guess';
-
-    if (document.hidden && isGuessScreen && !cheatState.flagged) {
-      cheatState.hiddenTime = Date.now();
-      cheatState.graceTimer = setTimeout(() => {
-        cheatState.flagged = true;
-      }, 3000);
+    if (document.hidden) {
       saveCheatTimestamp();
-    } else if (!document.hidden) {
-      if (cheatState.graceTimer) {
-        clearTimeout(cheatState.graceTimer);
-        cheatState.graceTimer = null;
-      }
-      if (cheatState.flagged && isGuessScreen) {
-        showCheatOverlay();
-      }
-      cheatState.hiddenTime = null;
+    } else {
       checkCheatGap();
     }
   });
 
-  // Cheat Detection: back-button / bfcache navigation
   window.addEventListener('pagehide', () => {
     saveCheatTimestamp();
   });
 
-  window.addEventListener('beforeunload', () => {
-    saveCheatTimestamp();
-  });
-
-  window.addEventListener('pageshow', () => {
+  window.addEventListener('pageshow', (e) => {
     checkCheatGap();
     const activeScreen = document.querySelector('.screen.active');
     if (activeScreen && activeScreen.id === 'screen-guess') {
