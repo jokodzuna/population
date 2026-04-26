@@ -602,3 +602,12 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js');
   });
 }
+
+// JS Fullscreen API: fallback for when manifest fullscreen doesn't hide system bars
+function requestAppFullscreen() {
+  const el = document.documentElement;
+  if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+  else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+}
+document.addEventListener('click', requestAppFullscreen, { once: true });
+document.addEventListener('touchstart', requestAppFullscreen, { once: true });

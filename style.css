@@ -30,7 +30,11 @@ html, body {
 .app {
   max-width: 480px;
   margin: 0 auto;
-  padding: calc(24px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left));
+  /* max() ensures minimum padding even when env() returns 0 (e.g. Pixel 8 / no-notch Android) */
+  padding-top: max(env(safe-area-inset-top), 32px);
+  padding-right: max(env(safe-area-inset-right), 16px);
+  padding-bottom: max(env(safe-area-inset-bottom), 28px);
+  padding-left: max(env(safe-area-inset-left), 16px);
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
