@@ -293,8 +293,9 @@ function getHintInterval(pop) {
 function isSoloMode() { return gameState.numPlayers === 1; }
 
 function getSoloPoints(actual, guess) {
-  const error = Math.abs(actual - guess) / actual;
-  return Math.max(0, Math.round(1000 * (1 - error)));
+  const safeGuess = Math.max(guess, 1);
+  const logError = Math.abs(Math.log10(actual) - Math.log10(safeGuess));
+  return Math.max(0, Math.round(1000 * (1 - logError)));
 }
 
 function animateCounter(el, target, duration) {
@@ -347,12 +348,27 @@ function renderResultsScreen() {
     $('btn-next-round').textContent = gameState.currentRound >= SOLO_ROUNDS ? 'See Final Score →' : 'Next Country →';
 
     const guess = gameState.players[0].lastGuess;
-    const pts = getSoloPoints(actual, guess);
-    const error = Math.abs(actual - guess) / actual;
-    const offPct = Math.round(error * 100);
+    const pts = gameState.players[0].lastGuess <= 0 ? 0 : getSoloPoints(actual, guess);
+    const safeGuess = Math.max(guess, 1);
+    const factor = Math.max(actual, safeGuess) / Math.min(actual, safeGuess);
+    const factorDisplay = Math.round(factor * 10) / 10;
+
+    let factorText, factorColor;
+    if (guess <= 0) {
+      factorText = 'No guess submitted';
+      factorColor = 'var(--text-muted)';
+    } else if (factor < 1.1) {
+      factorText = '🎯 Almost Perfect!';
+      factorColor = 'var(--success)';
+    } else {
+      factorText = `Off by ${factorDisplay}x`;
+      factorColor = factor < 2 ? 'var(--success)' : factor < 5 ? 'var(--warning)' : 'var(--danger)';
+    }
 
     animateCounter($('solo-points-counter'), pts);
-    $('solo-accuracy').textContent = offPct === 0 ? 'Spot on! 🎯' : `${offPct}% off`;
+    const accEl = $('solo-accuracy');
+    accEl.textContent = factorText;
+    accEl.style.color = factorColor;
     $('solo-session-total').textContent = `Session Total: ${formatNumber(gameState.players[0].score)} pts`;
   } else {
     $('results-title').textContent = 'Round Results';
