@@ -44,6 +44,7 @@
         <div id="leaderboard-ready"></div>
         <button class="btn-primary btn-large" id="btn-start-game">START</button>
       </div>
+      <button class="btn-text" id="btn-exit-ready">Exit Game</button>
     </section>
 
     <!-- Screen 4: Pass the Phone -->
@@ -54,6 +55,7 @@
         <p id="pass-player-name">Ready Player 1?</p>
         <button class="btn-primary btn-large" id="btn-pass-ready">I'm Ready</button>
       </div>
+      <button class="btn-text" id="btn-exit-pass">Exit Game</button>
     </section>
 
     <!-- Screen 5: Guess -->
@@ -71,6 +73,7 @@
         </div>
         <button class="btn-primary" id="btn-submit-guess">Submit Guess</button>
       </div>
+      <button class="btn-text" id="btn-exit-guess">Exit Game</button>
     </section>
 
     <!-- Screen 6: Results -->
@@ -90,6 +93,7 @@
         <div class="leaderboard" id="leaderboard-results"></div>
       </div>
       <button class="btn-primary btn-large" id="btn-next-round">Next Round</button>
+      <button class="btn-text" id="btn-exit-results">Exit Game</button>
     </section>
 
     <!-- Screen 7: Winner -->
@@ -103,6 +107,18 @@
       </div>
     </section>
 
+  </div>
+
+  <!-- Exit Confirmation Modal -->
+  <div id="exit-modal" class="modal-overlay">
+    <div class="modal-card">
+      <h2>Exit Game?</h2>
+      <p>Are you sure you want to exit the current game?</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="btn-exit-cancel">Cancel</button>
+        <button class="btn-danger" id="btn-exit-confirm">Yes, Exit</button>
+      </div>
+    </div>
   </div>
 
   <script src="game.js"></script>

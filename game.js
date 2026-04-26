@@ -14,9 +14,21 @@ const STORAGE_KEY = 'gameState';
 
 function $(id) { return document.getElementById(id); }
 
+let exitReturnScreen = null;
+
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   $(id).classList.add('active');
+}
+
+function showExitModal(returnScreen) {
+  exitReturnScreen = returnScreen;
+  $('exit-modal').classList.add('active');
+}
+
+function hideExitModal() {
+  $('exit-modal').classList.remove('active');
+  exitReturnScreen = null;
 }
 
 function formatNumber(n) {
@@ -379,6 +391,33 @@ async function init() {
   });
 
   $('btn-play-again').addEventListener('click', () => {
+    clearState();
+    showScreen('screen-setup');
+  });
+
+  // Exit game handlers
+  const exitButtons = [
+    { id: 'btn-exit-ready', screen: 'screen-ready' },
+    { id: 'btn-exit-pass', screen: 'screen-pass' },
+    { id: 'btn-exit-guess', screen: 'screen-guess' },
+    { id: 'btn-exit-results', screen: 'screen-results' }
+  ];
+
+  exitButtons.forEach(({ id, screen }) => {
+    $(id).addEventListener('click', () => {
+      showExitModal(screen);
+    });
+  });
+
+  $('btn-exit-cancel').addEventListener('click', () => {
+    hideExitModal();
+    if (exitReturnScreen) {
+      showScreen(exitReturnScreen);
+    }
+  });
+
+  $('btn-exit-confirm').addEventListener('click', () => {
+    hideExitModal();
     clearState();
     showScreen('screen-setup');
   });

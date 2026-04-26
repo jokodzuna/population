@@ -480,6 +480,101 @@ input[type="text"]:focus {
   text-align: center;
 }
 
+/* Text button */
+.btn-text {
+  width: 100%;
+  padding: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-text:hover {
+  color: var(--danger);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 28px 24px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-card h2 {
+  font-size: 1.4rem;
+}
+
+.modal-card p {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.2s;
+}
+
+.modal-actions button:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background: var(--surface-light);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: #475569;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: var(--bg);
+}
+
+.btn-danger:hover {
+  background: #ef4444;
+}
+
 /* Utility */
 .text-center {
   text-align: center;
