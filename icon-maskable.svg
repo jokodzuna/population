@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#0f172a"/>
+  <circle cx="256" cy="210" r="110" fill="none" stroke="#38bdf8" stroke-width="14"/>
+  <ellipse cx="256" cy="210" rx="48" ry="110" fill="none" stroke="#38bdf8" stroke-width="10"/>
+  <line x1="146" y1="210" x2="366" y2="210" stroke="#38bdf8" stroke-width="10"/>
+  <line x1="160" y1="158" x2="352" y2="158" stroke="#38bdf8" stroke-width="8"/>
+  <line x1="160" y1="262" x2="352" y2="262" stroke="#38bdf8" stroke-width="8"/>
+  <text x="256" y="390" font-family="Segoe UI, system-ui, sans-serif" font-size="68" font-weight="700" fill="#38bdf8" text-anchor="middle">PopQuiz</text>
+</svg>
