@@ -575,15 +575,31 @@ async function init() {
     showScreen('screen-setup');
   });
 
-  // Cheat Detection: Page Visibility API
+  // Cheat Detection: Page Visibility API (window switching / tab switching)
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
+    const activeScreen = document.querySelector('.screen.active');
+    const isGuessScreen = activeScreen && activeScreen.id === 'screen-guess';
+
+    if (document.hidden && isGuessScreen && !cheatState.flagged) {
+      cheatState.hiddenTime = Date.now();
+      cheatState.graceTimer = setTimeout(() => {
+        cheatState.flagged = true;
+      }, 3000);
       saveCheatTimestamp();
-    } else {
+    } else if (!document.hidden) {
+      if (cheatState.graceTimer) {
+        clearTimeout(cheatState.graceTimer);
+        cheatState.graceTimer = null;
+      }
+      if (cheatState.flagged && isGuessScreen) {
+        showCheatOverlay();
+      }
+      cheatState.hiddenTime = null;
       checkCheatGap();
     }
   });
 
+  // Cheat Detection: back-button / bfcache navigation
   window.addEventListener('pagehide', () => {
     saveCheatTimestamp();
   });
@@ -594,7 +610,6 @@ async function init() {
 
   window.addEventListener('pageshow', () => {
     checkCheatGap();
-    // If restored from bfcache on guess screen, restart heartbeat
     const activeScreen = document.querySelector('.screen.active');
     if (activeScreen && activeScreen.id === 'screen-guess') {
       startHeartbeat();
