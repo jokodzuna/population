@@ -595,6 +595,41 @@ input[type="text"]:focus {
   background: #ef4444;
 }
 
+/* Cheat Detection Modal */
+.cheat-modal-overlay {
+  background: rgba(15, 23, 42, 0.92);
+}
+
+.cheat-modal-card {
+  border: 2px solid var(--danger);
+  box-shadow: 0 0 30px rgba(248, 113, 113, 0.3);
+}
+
+.cheat-modal-card h2 {
+  color: var(--danger);
+}
+
+.btn-cheat-skip {
+  flex: 1;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  background: var(--danger);
+  color: var(--bg);
+  cursor: pointer;
+  transition: transform 0.1s, background 0.2s;
+}
+
+.btn-cheat-skip:hover {
+  background: #ef4444;
+}
+
+.btn-cheat-skip:active {
+  transform: scale(0.98);
+}
+
 /* Utility */
 .text-center {
   text-align: center;

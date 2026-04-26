@@ -17,6 +17,12 @@ function $(id) { return document.getElementById(id); }
 
 let exitReturnScreen = null;
 
+const cheatState = {
+  flagged: false,
+  hiddenTime: null,
+  graceTimer: null
+};
+
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   $(id).classList.add('active');
@@ -30,6 +36,30 @@ function showExitModal(returnScreen) {
 function hideExitModal() {
   $('exit-modal').classList.remove('active');
   exitReturnScreen = null;
+}
+
+function showCheatOverlay() {
+  $('cheat-modal').classList.add('active');
+}
+
+function hideCheatOverlay() {
+  $('cheat-modal').classList.remove('active');
+}
+
+function skipTurn() {
+  const p = gameState.players[gameState.currentPlayerTurn];
+  p.currentGuess = -1;
+  p.lastDiff = Infinity;
+  p.lastGuess = 0;
+  cheatState.flagged = false;
+  cheatState.hiddenTime = null;
+  hideCheatOverlay();
+  gameState.currentPlayerTurn++;
+  if (gameState.currentPlayerTurn < gameState.numPlayers) {
+    showPassScreen();
+  } else {
+    finishRound();
+  }
 }
 
 function formatNumber(n) {
@@ -280,9 +310,14 @@ function finishRound() {
   const actual = gameState.currentCountry.population;
 
   gameState.players.forEach((p, i) => {
-    const diff = Math.abs(p.currentGuess - actual);
-    p.lastDiff = diff;
-    p.lastGuess = p.currentGuess;
+    if (p.currentGuess < 0) {
+      p.lastDiff = Infinity;
+      p.lastGuess = 0;
+    } else {
+      const diff = Math.abs(p.currentGuess - actual);
+      p.lastDiff = diff;
+      p.lastGuess = p.currentGuess;
+    }
   });
 
   const roundPoints = getRoundPoints();
@@ -310,11 +345,23 @@ function nextRound() {
   gameState.currentRound += 1;
   gameState.currentPlayerTurn = 0;
   gameState.players.forEach(p => { p.currentGuess = 0; p.lastDiff = 0; p.lastGuess = 0; });
+  cheatState.flagged = false;
+  cheatState.hiddenTime = null;
+  if (cheatState.graceTimer) {
+    clearTimeout(cheatState.graceTimer);
+    cheatState.graceTimer = null;
+  }
   pickRandomCountry();
   showPassScreen();
 }
 
 function initGame() {
+  cheatState.flagged = false;
+  cheatState.hiddenTime = null;
+  if (cheatState.graceTimer) {
+    clearTimeout(cheatState.graceTimer);
+    cheatState.graceTimer = null;
+  }
   gameState.players = [];
   for (let i = 0; i < gameState.numPlayers; i++) {
     const nameInput = $(`name-${i}`);
@@ -472,6 +519,32 @@ async function init() {
     hideExitModal();
     clearState();
     showScreen('screen-setup');
+  });
+
+  // Cheat Detection: Page Visibility API
+  document.addEventListener('visibilitychange', () => {
+    const activeScreen = document.querySelector('.screen.active');
+    const isGuessScreen = activeScreen && activeScreen.id === 'screen-guess';
+
+    if (document.hidden && isGuessScreen && !cheatState.flagged) {
+      cheatState.hiddenTime = Date.now();
+      cheatState.graceTimer = setTimeout(() => {
+        cheatState.flagged = true;
+      }, 3000);
+    } else if (!document.hidden) {
+      if (cheatState.graceTimer) {
+        clearTimeout(cheatState.graceTimer);
+        cheatState.graceTimer = null;
+      }
+      if (cheatState.flagged && isGuessScreen) {
+        showCheatOverlay();
+      }
+      cheatState.hiddenTime = null;
+    }
+  });
+
+  $('btn-cheat-skip').addEventListener('click', () => {
+    skipTurn();
   });
 }
 
