@@ -82,7 +82,14 @@
         <p id="guess-hint" class="guess-hint"></p>
         <p class="guess-prompt">Guess the population</p>
         <div class="input-wrapper">
-          <input type="text" id="guess-input" placeholder="0" autocomplete="off" inputmode="numeric">
+          <input type="text" id="guess-input" placeholder="0"
+            autocomplete="one-time-code"
+            autocorrect="off"
+            autocapitalize="none"
+            spellcheck="false"
+            aria-autocomplete="none"
+            inputmode="numeric"
+            pattern="[0-9]*">
         </div>
         <button class="btn-primary" id="btn-submit-guess">Submit Guess</button>
       </div>
