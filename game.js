@@ -619,12 +619,6 @@ async function init() {
     }
   });
 
-  $('guess-input').addEventListener('focus', function () {
-    this.setAttribute('readonly', 'readonly');
-    const self = this;
-    setTimeout(() => { self.removeAttribute('readonly'); }, 50);
-  });
-
   $('btn-next-round').addEventListener('click', () => {
     if (!checkWinner()) {
       nextRound();
@@ -694,16 +688,7 @@ async function init() {
 init();
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js');
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    regs.forEach(r => r.unregister());
   });
 }
-
-// JS Fullscreen API: fallback for when manifest fullscreen doesn't hide system bars
-function requestAppFullscreen() {
-  const el = document.documentElement;
-  if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
-  else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-}
-document.addEventListener('click', requestAppFullscreen, { once: true });
-document.addEventListener('touchstart', requestAppFullscreen, { once: true });
