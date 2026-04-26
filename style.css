@@ -240,6 +240,10 @@ input[type="text"]:focus {
   font-size: 1rem;
 }
 
+.guess-card form {
+  display: contents;
+}
+
 .input-wrapper {
   position: relative;
 }

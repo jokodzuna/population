@@ -1,4 +1,4 @@
-const CACHE_NAME = 'popquiz-v6';
+const CACHE_NAME = 'popquiz-v7';
 const ASSETS = [
   './',
   './index.html',

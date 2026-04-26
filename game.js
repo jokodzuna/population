@@ -294,7 +294,7 @@ function isSoloMode() { return gameState.numPlayers === 1; }
 
 function getSoloPoints(actual, guess) {
   const error = Math.abs(actual - guess) / actual;
-  return Math.max(0, Math.round(1000 * (1 - (error / 2.0))));
+  return Math.max(0, Math.round(1000 * (1 - error)));
 }
 
 function animateCounter(el, target, duration) {
@@ -349,10 +349,10 @@ function renderResultsScreen() {
     const guess = gameState.players[0].lastGuess;
     const pts = getSoloPoints(actual, guess);
     const error = Math.abs(actual - guess) / actual;
-    const accuracy = Math.max(0, Math.round((1 - Math.min(error, 1)) * 100));
+    const offPct = Math.round(error * 100);
 
     animateCounter($('solo-points-counter'), pts);
-    $('solo-accuracy').textContent = `${accuracy}% Accurate!`;
+    $('solo-accuracy').textContent = offPct === 0 ? 'Spot on! 🎯' : `${offPct}% off`;
     $('solo-session-total').textContent = `Session Total: ${formatNumber(gameState.players[0].score)} pts`;
   } else {
     $('results-title').textContent = 'Round Results';
@@ -617,6 +617,12 @@ async function init() {
     if (e.key === 'Enter') {
       $('btn-submit-guess').click();
     }
+  });
+
+  $('guess-input').addEventListener('focus', function () {
+    this.setAttribute('readonly', 'readonly');
+    const self = this;
+    setTimeout(() => { self.removeAttribute('readonly'); }, 50);
   });
 
   $('btn-next-round').addEventListener('click', () => {
