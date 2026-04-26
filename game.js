@@ -70,6 +70,13 @@ function stopHeartbeat() {
   sessionStorage.removeItem('lastActiveTime');
 }
 
+function saveCheatTimestamp() {
+  const isActive = sessionStorage.getItem('isTurnActive');
+  if (isActive === 'true') {
+    sessionStorage.setItem('lastActiveTime', String(Date.now()));
+  }
+}
+
 function checkCheatGap() {
   const isActive = sessionStorage.getItem('isTurnActive');
   const lastTime = parseInt(sessionStorage.getItem('lastActiveTime'), 10);
@@ -570,13 +577,28 @@ async function init() {
 
   // Cheat Detection: Page Visibility API
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) {
+    if (document.hidden) {
+      saveCheatTimestamp();
+    } else {
       checkCheatGap();
     }
   });
 
+  window.addEventListener('pagehide', () => {
+    saveCheatTimestamp();
+  });
+
+  window.addEventListener('beforeunload', () => {
+    saveCheatTimestamp();
+  });
+
   window.addEventListener('pageshow', () => {
     checkCheatGap();
+    // If restored from bfcache on guess screen, restart heartbeat
+    const activeScreen = document.querySelector('.screen.active');
+    if (activeScreen && activeScreen.id === 'screen-guess') {
+      startHeartbeat();
+    }
   });
 
   $('btn-cheat-skip').addEventListener('click', () => {
