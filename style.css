@@ -17,23 +17,25 @@
   --warning: #fbbf24;
 }
 
+html {
+  background: var(--bg);
+}
+
 html, body {
   height: 100%;
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
-  /* Extend background into notch/status bar area */
-  background-attachment: fixed;
 }
 
 .app {
   max-width: 480px;
   margin: 0 auto;
-  /* max() ensures minimum padding even when env() returns 0 (e.g. Pixel 8 / no-notch Android) */
-  padding-top: max(env(safe-area-inset-top), 32px);
+  background: var(--bg);
+  padding-top: max(env(safe-area-inset-top), 16px);
   padding-right: max(env(safe-area-inset-right), 16px);
-  padding-bottom: max(env(safe-area-inset-bottom), 28px);
+  padding-bottom: max(env(safe-area-inset-bottom), 16px);
   padding-left: max(env(safe-area-inset-left), 16px);
   min-height: 100dvh;
   display: flex;
